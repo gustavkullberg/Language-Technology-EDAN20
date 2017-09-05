@@ -13,8 +13,7 @@ def get_files(dir, suffix):
             files.append(file)
     return files
 
-def main(arg):
-    files = get_files(arg, 'txt')
+def createDictionaries(files):
     dictionaries = {}
     words_per_doc = {}
     for f in files:
@@ -22,34 +21,41 @@ def main(arg):
         WORDS = (words(open(arg + '/' + f).read()))
         for w in WORDS:
             dictionaries.setdefault(w.group(), {}).setdefault(f, []).append(w.start())
-            count +=1
+            count += 1
         words_per_doc[f] = count
 
     tf_idf = dict()
-    default=[]
+    default = []
     for f in files:
         for w in dictionaries.keys():
-            tf = len(dictionaries.get(w, default).get(f, default))/words_per_doc[f]
-            idf = numpy.log10(len(dictionaries[w])/len(files))
-            tf_idf.setdefault(f, {}).setdefault(w, -tf*idf)
+            tf = len(dictionaries.get(w, default).get(f, default)) / words_per_doc[f]
+            idf = numpy.log10(len(dictionaries[w]) / len(files))
+            tf_idf.setdefault(f, {}).setdefault(w, -tf * idf)
+    return tf_idf
 
+def compareDocuments(dic, files):
+    length = len(files)
+    compareMatrix = numpy.zeros((length, length))
+    for i in range(length):
+        for j in range(length):
+            nominator = denominator1 = denominator2 = 0
+            for k in (dic[files[0]].keys()):
+                nominator += dic[files[i]][k] * dic[files[j]][k]
+                denominator1 += numpy.square(dic[files[i]][k])
+                denominator2 += numpy.square(dic[files[j]][k])
+            denominator = numpy.sqrt(denominator1 * denominator2)
+            compareMatrix[i][j] = nominator / denominator
+    print(compareMatrix)
+
+
+def main(arg):
+    files = get_files(arg, 'txt')
+    tf_idf = createDictionaries(files)
     for key in tf_idf.keys():
         print(key)
         for l in tf_idf[key].keys():
             print(l + '     ' + str(tf_idf[key][l]))
-
-    length = len(files)
-    compareMatrix = numpy.zeros((length,length))
-    for i in range(length):
-        for j in range(length):
-            nominator = denominator1 = denominator2 = 0
-            for k in (tf_idf[files[0]].keys()):
-                nominator += tf_idf[files[i]][k]*tf_idf[files[j]][k]
-                denominator1+= numpy.square(tf_idf[files[i]][k])
-                denominator2+= numpy.square(tf_idf[files[j]][k])
-            denominator = numpy.sqrt(denominator1*denominator2)
-            compareMatrix[i][j] = nominator/denominator
-    print(compareMatrix)
+    compareDocuments(tf_idf, files)
 
 if __name__ == "__main__":
     for arg in sys.argv[1:]:
