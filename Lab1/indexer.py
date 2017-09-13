@@ -36,6 +36,7 @@ def createDictionaries(files):
 def compareDocuments(dic, files):
     length = len(files)
     compareMatrix = numpy.zeros((length, length))
+    mostSimilar = ['name1', 'name2', 0]
     for i in range(length):
         for j in range(length):
             nominator = denominator1 = denominator2 = 0
@@ -45,7 +46,12 @@ def compareDocuments(dic, files):
                 denominator2 += numpy.square(dic[files[j]][k])
             denominator = numpy.sqrt(denominator1 * denominator2)
             compareMatrix[i][j] = nominator / denominator
+            if(mostSimilar[2] < compareMatrix[i][j] and compareMatrix[i][j] != 1):
+                mostSimilar[0] = files[i]
+                mostSimilar[1] = files[j]
+                mostSimilar[2] = compareMatrix[i][j]
     print(compareMatrix)
+    print(mostSimilar)
 
 
 def main(arg):
