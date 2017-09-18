@@ -44,7 +44,11 @@ def count_bigrams(words, uni):
 
 
 if __name__ == '__main__':
-    sen = 'Det var en gång en katt som hette Nils.'
+    #sen = 'Det var en gång en katt som hette Nils.'
+    #sen = 'Jag är bäst.'
+    #sen = 'Katten var hungrig därför åt han en fisk.'
+    #sen = 'Jag nej hej vet hur nej nej.'
+    sen = 'Studier sägs vara farlig för människor.'
     sen = tokenize1(sen)
     #sen = ['<s>'] + sen + ['</s>']
     text = sys.stdin.read()
