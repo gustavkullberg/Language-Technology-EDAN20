@@ -166,7 +166,7 @@ if __name__ == '__main__':
 
     training_start_time = time.clock()
     print("Training the model...")
-    classifier = linear_model.LogisticRegression(penalty='l2', dual=True, solver='liblinear')
+    classifier = linear_model.LogisticRegression(penalty='l2', dual=True, solver='liblinear', verbose=1)
     model = classifier.fit(X, y)
     print(model)
 
@@ -178,6 +178,8 @@ if __name__ == '__main__':
     # This is done for the whole corpus without regard for the sentence structure
     print("Predicting the chunks in the test set...")
     X_test_dict, y_test_symbols = extract_features(test_sentences, w_size, feature_names)
+    print(X_test_dict)
+    print(y_test_symbols)
     # Vectorize the test set and one-hot encoding
     X_test = vec.transform(X_test_dict)  # Possible to add: .toarray()
     y_test = [inv_dict_classes[i] if i in y_symbols else 0 for i in y_test_symbols]

@@ -31,14 +31,30 @@ def train(corpus):
     :return:
     """
     pos_cnt = count_pos(corpus)
-    # We compute the chunk distribution by POS
+
     chunk_dist = {key: {} for key in pos_cnt.keys()}
+
+    for i in corpus:
+        for k in i:
+            chunk_dist[k['pos']][k['chunk']] = chunk_dist[k['pos']].get(k['chunk'], 0) + 1
+
+    #print(chunk_dist)
+    # We compute the chunk distribution by POS
     """
     Fill in code to compute the chunk distribution for each part of speech
     """
 
     # We determine the best association
     pos_chunk = {}
+    for pos in chunk_dist.keys():
+        max = 0
+        for chunk in chunk_dist[pos]:
+            #print(chunk_dist[pos][chunk])
+            if(max<chunk_dist[pos][chunk]):
+                max = chunk_dist[pos][chunk]
+                pos_chunk[pos] = chunk
+
+    print(pos_chunk)
     """
     Fill in code so that for each part of speech, you select the most frequent chunk.
     You will build a dictionary with key values:
