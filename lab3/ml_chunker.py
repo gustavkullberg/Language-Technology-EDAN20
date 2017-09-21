@@ -72,10 +72,9 @@ def extract_features_sent(sentence, w_size, feature_names):
         for j in range(2 * w_size + 1):
             x.append(padded_sentence[i + j][1])
         # The chunks (Up to the word)
-        """
         for j in range(w_size):
-            feature_line.append(padded_sentence[i + j][2])
-        """
+            x.append(padded_sentence[i + j][2])
+
         # We represent the feature vector as a dictionary
         X.append(dict(zip(feature_names, x)))
         # The classes are stored in a list
@@ -125,16 +124,30 @@ def encode_classes(y_symbols):
 
 def predict(test_sentences, feature_names, f_out):
     for test_sentence in test_sentences:
+        chunk_n1 = 'BOS'
+        chunk_n2 = 'BOS'
+        Y_test_predicted_symbols = []
+
         X_test_dict, y_test_symbols = extract_features_sent(test_sentence, w_size, feature_names)
+        for line in X_test_dict:
+            line['chunk_n2'] = chunk_n2
+            line['chunk_n1'] = chunk_n1
+            line_Test = vec.transform(line)
+            y_test_predicted = classifier.predict(line_Test)
+            y_test_predicted_symbols = list(dict_classes[i] for i in y_test_predicted)
+            chunk_n2 = chunk_n1
+            chunk_n1 = y_test_predicted_symbols
+            Y_test_predicted_symbols.append(y_test_predicted_symbols)
+
         # Vectorize the test sentence and one hot encoding
-        X_test = vec.transform(X_test_dict)
+        #X_test = vec.transform(X_test_dict)
         # Predicts the chunks and returns numbers
-        y_test_predicted = classifier.predict(X_test)
+        #y_test_predicted = classifier.predict(X_test)
         # Converts to chunk names
-        y_test_predicted_symbols = list(dict_classes[i] for i in y_test_predicted)
+        #y_test_predicted_symbols = list(dict_classes[i] for i in y_test_predicted)
         # Appends the predicted chunks as a last column and saves the rows
         rows = test_sentence.splitlines()
-        rows = [rows[i] + ' ' + y_test_predicted_symbols[i] for i in range(len(rows))]
+        rows = [rows[i].append(Y_test_predicted_symbols[i]) for i in range(len(rows))]
         for row in rows:
             f_out.write(row + '\n')
         f_out.write('\n')
@@ -147,7 +160,7 @@ if __name__ == '__main__':
     test_corpus = 'test.txt'
     w_size = 2  # The size of the context window to the left and right of the word
     feature_names = ['word_n2', 'word_n1', 'word', 'word_p1', 'word_p2',
-                     'pos_n2', 'pos_n1', 'pos', 'pos_p1', 'pos_p2']
+                     'pos_n2', 'pos_n1', 'pos', 'pos_p1', 'pos_p2', 'chunk_n2', 'chunk_n1']
 
     train_sentences = conll_reader.read_sentences(train_corpus)
 
@@ -178,8 +191,8 @@ if __name__ == '__main__':
     # This is done for the whole corpus without regard for the sentence structure
     print("Predicting the chunks in the test set...")
     X_test_dict, y_test_symbols = extract_features(test_sentences, w_size, feature_names)
-    print(X_test_dict)
-    print(y_test_symbols)
+    #print(X_test_dict)
+    #print(y_test_symbols)
     # Vectorize the test set and one-hot encoding
     X_test = vec.transform(X_test_dict)  # Possible to add: .toarray()
     y_test = [inv_dict_classes[i] if i in y_symbols else 0 for i in y_test_symbols]
