@@ -146,12 +146,9 @@ def predict(test_sentences, feature_names, f_out):
         # Converts to chunk names
         #y_test_predicted_symbols = list(dict_classes[i] for i in y_test_predicted)
         # Appends the predicted chunks as a last column and saves the rows
-        rows = test_sentence.splitlines()
-        for i in range(len(rows)):
-           print(Y_test_predicted_symbols[i])
 
         rows = test_sentence.splitlines()
-        rows = [rows + ' ' + Y_test_predicted_symbols[i] for i in range(len(rows))]
+        rows = [rows[i] + ' ' + Y_test_predicted_symbols[i] for i in range(len(rows))]
         for row in rows:
             f_out.write(row + '\n')
         f_out.write('\n')
