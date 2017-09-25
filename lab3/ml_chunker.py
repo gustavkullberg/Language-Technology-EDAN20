@@ -5,6 +5,7 @@ __author__ = "Pierre Nugues"
 
 import time
 import conll_reader
+import result
 from sklearn.feature_extraction import DictVectorizer
 from sklearn import svm
 from sklearn import linear_model
@@ -129,6 +130,7 @@ def predict(test_sentences, feature_names, f_out):
         Y_test_predicted_symbols = []
 
         X_test_dict, y_test_symbols = extract_features_sent(test_sentence, w_size, feature_names)
+        print(X_test_dict)
         for line in X_test_dict:
             line['chunk_n2'] = chunk_n2
             line['chunk_n1'] = chunk_n1
@@ -138,14 +140,7 @@ def predict(test_sentences, feature_names, f_out):
             chunk_n2 = chunk_n1
             chunk_n1 = y_test_predicted_symbols
             Y_test_predicted_symbols  = Y_test_predicted_symbols + y_test_predicted_symbols
-
-        # Vectorize the test sentence and one hot encoding
-        #X_test = vec.transform(X_test_dict)
-        # Predicts the chunks and returns numbers
-        #y_test_predicted = classifier.predict(X_test)
-        # Converts to chunk names
-        #y_test_predicted_symbols = list(dict_classes[i] for i in y_test_predicted)
-        # Appends the predicted chunks as a last column and saves the rows
+            #print(Y_test_predicted_symbols)
 
         rows = test_sentence.splitlines()
         rows = [rows[i] + ' ' + Y_test_predicted_symbols[i] for i in range(len(rows))]
@@ -207,8 +202,9 @@ if __name__ == '__main__':
     # corpus structure
     print("Predicting the test set...")
     f_out = open('out', 'w')
-    predict(test_sentences, feature_names, f_out)
 
     end_time = time.clock()
+    predict(test_sentences, feature_names, f_out)
     print("Training time:", (test_start_time - training_start_time) / 60)
     print("Test time:", (end_time - test_start_time) / 60)
+    result.getResult()
