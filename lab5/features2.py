@@ -51,12 +51,30 @@ def extract_features_sent(sentence, feature_names):
         stack, queue, graph, trans = dparser.reference(stack, queue, graph)
 
         x.append(stack[0]['cpostag'])
+        if(len(stack)>1):
+            x.append(stack[1]['cpostag'])
+        else:
+            x.append('nil')
         x.append(stack[0]['form'])
+        if(len(stack)>1):
+            x.append(stack[1]['form'])
+        else:
+            x.append('nil')
         if(queue):
             x.append(queue[0]['cpostag'])
+        else:
+            x.append('nil')
+        if(len(queue)>1):
+            x.append(queue[1]['cpostag'])
+        else:
+            x.append('nil')
+        if(queue):
             x.append(queue[0]['form'])
         else:
             x.append('nil')
+        if (len(queue)> 1):
+            x.append(queue[1]['form'])
+        else:
             x.append('nil')
 
         x.append(transition.can_reduce(stack, graph))
@@ -65,6 +83,8 @@ def extract_features_sent(sentence, feature_names):
         y.append(trans)
         x = list()
        # x.append(stack[0]['cpostag'])
+
+
 
     print(X)
     print(y)
