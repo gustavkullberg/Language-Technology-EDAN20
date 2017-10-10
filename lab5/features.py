@@ -36,7 +36,7 @@ def extract_features_sent(sentence, feature_names):
     stack = []
     graph = {}
     queue = list(sentence)
-    #print('this is queue',queue)
+    print('this is queue',queue)
     graph['heads'] = {}
     graph['heads']['0'] = '0'
     graph['deprels'] = {}
@@ -45,36 +45,21 @@ def extract_features_sent(sentence, feature_names):
     transitions = []
 
     x = list()
-    X = list()
-    y = list()
     while queue:
-        stack, queue, graph, trans = dparser.reference(stack, queue, graph)
+        stack, queue, graph, trans = reference(stack, queue, graph)
+        transitions.append(trans)
+    stack, graph = transition.empty_stack(stack, graph)
 
-        x.append(stack[0]['cpostag'])
-        x.append(stack[0]['form'])
-        if(queue):
-            x.append(queue[0]['cpostag'])
-            x.append(queue[0]['form'])
-        else:
-            x.append('nil')
-            x.append('nil')
 
-        x.append(transition.can_reduce(stack, graph))
-        x.append(transition.can_leftarc(stack, graph))
-        X.append(x)
-        y.append(trans)
-        x = list()
-       # x.append(stack[0]['cpostag'])
-
-    print(X)
-    print(y)
+    #for word in queue:
+        #print(word['form'])
+        #stack, queue, graph, trans = reference(stack, queue, graph)
+        #transitions.append(trans)
+       # stack, graph = transition.empty_stack(stack, graph)
+    X = 0
+    y = 0
 
     return X, y
-
-
-
-
-
 
 
 if __name__ == '__main__':
@@ -85,7 +70,6 @@ if __name__ == '__main__':
 
     sentences = conll.read_sentences(train_file)
     formatted_corpus = conll.split_rows(sentences, column_names_2006)
-
     feature_names = ['stack0_POS', 'stack0_word', 'queue0_POS', 'queue0_word', 'can-la',
                      'can-re']
     extract_features(formatted_corpus, feature_names)
