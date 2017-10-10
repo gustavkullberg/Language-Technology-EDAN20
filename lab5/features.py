@@ -2,6 +2,7 @@
 
 import transition
 import conll
+import dparser
 
 def extract_features(sentences, feature_names):
     """
@@ -44,18 +45,21 @@ def extract_features_sent(sentence, feature_names):
     transitions = []
 
     x = list()
-    for word in queue:
-        print(word['form'])
+    while queue:
+        stack, queue, graph, trans = reference(stack, queue, graph)
+        transitions.append(trans)
+    stack, graph = transition.empty_stack(stack, graph)
 
+
+    #for word in queue:
+        #print(word['form'])
+        #stack, queue, graph, trans = reference(stack, queue, graph)
+        #transitions.append(trans)
+       # stack, graph = transition.empty_stack(stack, graph)
     X = 0
     y = 0
 
     return X, y
-
-
-
-
-
 
 
 if __name__ == '__main__':
@@ -66,7 +70,6 @@ if __name__ == '__main__':
 
     sentences = conll.read_sentences(train_file)
     formatted_corpus = conll.split_rows(sentences, column_names_2006)
-
     feature_names = ['stack0_POS', 'stack0_word', 'queue0_POS', 'queue0_word', 'can-la',
                      'can-re']
     extract_features(formatted_corpus, feature_names)
