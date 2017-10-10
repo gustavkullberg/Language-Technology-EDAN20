@@ -2,6 +2,37 @@
 import transition
 import conll
 import dparser
+from sklearn.feature_extraction import DictVectorizer
+from sklearn import svm
+from sklearn import linear_model
+from sklearn import datasets
+from sklearn import metrics
+from sklearn import tree
+from sklearn.naive_bayes import GaussianNB
+from sklearn.grid_search import GridSearchCV
+import pickle
+
+
+def encode_classes(y_symbols):
+    """
+    Encode the classes as numbers
+    :param y_symbols:
+    :return: the y vector and the lookup dictionaries
+    """
+    # We extract the chunk names
+    classes = sorted(list(set(y_symbols)))
+
+    # We assign each name a number
+    dict_classes = dict(enumerate(classes))
+
+
+    # We build an inverted dictionary
+    inv_dict_classes = {v: k for k, v in dict_classes.items()}
+
+
+    # We convert y_symbols into a numerical vector
+    y = [inv_dict_classes[i] for i in y_symbols]
+    return y, dict_classes, inv_dict_classes
 
 def extract_features(sentences, feature_names):
     """
@@ -86,7 +117,7 @@ def extract_features_sent(sentence, feature_names):
 
         x.append(transition.can_reduce(stack, graph))
         x.append(transition.can_leftarc(stack, graph))
-        X.append(x)
+        X.append(dict(zip(feature_names, x)))
         stack, queue, graph, trans = dparser.reference(stack, queue, graph)
         y.append(trans)
         x = list()
@@ -109,6 +140,18 @@ if __name__ == '__main__':
 
     feature_names = ['stack0_POS', 'stack1_POS', 'stack0_word', 'stack1_word', 'queue0_POS', 'queue1_POS', 'queue0_word', 'queue1_word', 'can-re',
                      'can-la']
-    X, y = extract_features(formatted_corpus, feature_names)
-    for i in range(9):
-        print(str(X[i]) + " " + str(y[i]))
+    X_dict, y_dict = extract_features(formatted_corpus, feature_names)
+    #for i in range(9):
+    #    print(str(X[i]) + " " + str(y[i]))
+
+    vec = DictVectorizer(sparse=True)
+    X = vec.fit_transform(X_dict)
+
+    y, dict_classes, inv_dict_classes = encode_classes(y_dict)
+
+    classifier = linear_model.LogisticRegression(penalty='l2', dual=True, solver='liblinear', verbose=1)
+    model = classifier.fit(X, y)
+    pickle.dump(classifier, open("model2.pkl", "wb"))
+    pickle.dump(dict_classes, open("dict_classes2.pkl", "wb"))
+    pickle.dump(vec, open("vec2.pkl", "wb"))
+    print(model)
