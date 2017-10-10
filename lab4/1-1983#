@@ -1,0 +1,1527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<link rel="shortcut icon" href="/repository/xmlui/themes/UFAL/images/favicon.ico" />
+<meta name="Generator" content="DSpace 5.7-SNAPSHOT" />
+<link media="screen" href="/repository/xmlui/themes/UFAL/lib/lindat/public/css/lindat.css" rel="stylesheet" />
+<link media="screen" href="/repository/xmlui/themes/UFAL/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link media="screen" href="/repository/xmlui/themes/UFAL/lib/bootstrap/css/font-awesome.min.css" rel="stylesheet" />
+<link media="screen" href="/repository/xmlui/themes/UFAL/lib/bootstrap/css/ufal-theme.css" rel="stylesheet" />
+<link media="screen" href="/repository/xmlui/themes/UFAL/lib/bootstrap/css/repository.css" rel="stylesheet" />
+<link media="print" href="/repository/xmlui/themes/UFAL/lib/css/print.css" rel="stylesheet" />
+<script type="text/javascript">
+                
+                // Clear default text of emty text areas on focus
+                function tFocus(element) {
+                    if (element.value == ' '){
+                        element.value='';
+                    }
+                }
+                
+                // Clear default text of emty text areas on submit
+                function tSubmit(form) {
+                    var defaultedElements = document.getElementsByTagName("textarea");
+                    for (var i=0; i != defaultedElements.length; i++){
+                        if (defaultedElements[i].value == ' '){
+                            defaultedElements[i].value='';
+                        }
+                    }
+                }
+                
+                // Disable pressing 'enter' key to submit a form (otherwise pressing 'enter' causes a submission to start over)
+                function disableEnterKey(e) {
+                    var key;
+                    if(window.event)
+                        key = window.event.keyCode; //Internet Explorer
+                    else
+                        key = e.which; //Firefox and Netscape
+        
+                    if(key == 13) //if "Enter" pressed, then disable!
+                        return false;
+                    else
+                        return true;
+                }
+        
+                function FnArray() {
+                    this.funcs = new Array;
+                }
+        
+                FnArray.prototype.add = function(f) {
+                    if( typeof f!= "function" ) {
+                        f = new Function(f);
+                    }
+                    this.funcs[this.funcs.length] = f;
+                };
+        
+                FnArray.prototype.execute = function() {
+                    for( var i=0; i<this.funcs.length; i++ ){
+                        this.funcs[i]();
+                    }
+                };
+        
+                var runAfterJSImports = new FnArray();
+            </script>
+<title xmlns:i18n="http://apache.org/cocoon/i18n/2.1">Universal Dependencies 2.0</title>
+<link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+<meta name="DC.creator" content="Nivre, Joakim" />
+<meta name="DC.creator" content="Agić, Željko" />
+<meta name="DC.creator" content="Ahrenberg, Lars" />
+<meta name="DC.creator" content="Aranzabe, Maria Jesus" />
+<meta name="DC.creator" content="Asahara, Masayuki" />
+<meta name="DC.creator" content="Atutxa, Aitziber" />
+<meta name="DC.creator" content="Ballesteros, Miguel" />
+<meta name="DC.creator" content="Bauer, John" />
+<meta name="DC.creator" content="Bengoetxea, Kepa" />
+<meta name="DC.creator" content="Bhat, Riyaz Ahmad" />
+<meta name="DC.creator" content="Bick, Eckhard" />
+<meta name="DC.creator" content="Bosco, Cristina" />
+<meta name="DC.creator" content="Bouma, Gosse" />
+<meta name="DC.creator" content="Bowman, Sam" />
+<meta name="DC.creator" content="Candito, Marie" />
+<meta name="DC.creator" content="Cebiroğlu Eryiğit, Gülşen" />
+<meta name="DC.creator" content="Celano, Giuseppe G. A." />
+<meta name="DC.creator" content="Chalub, Fabricio" />
+<meta name="DC.creator" content="Choi, Jinho" />
+<meta name="DC.creator" content="Çöltekin, Çağrı" />
+<meta name="DC.creator" content="Connor, Miriam" />
+<meta name="DC.creator" content="Davidson, Elizabeth" />
+<meta name="DC.creator" content="de Marneffe, Marie-Catherine" />
+<meta name="DC.creator" content="de Paiva, Valeria" />
+<meta name="DC.creator" content="Diaz de Ilarraza, Arantza" />
+<meta name="DC.creator" content="Dobrovoljc, Kaja" />
+<meta name="DC.creator" content="Dozat, Timothy" />
+<meta name="DC.creator" content="Droganova, Kira" />
+<meta name="DC.creator" content="Dwivedi, Puneet" />
+<meta name="DC.creator" content="Eli, Marhaba" />
+<meta name="DC.creator" content="Erjavec, Tomaž" />
+<meta name="DC.creator" content="Farkas, Richárd" />
+<meta name="DC.creator" content="Foster, Jennifer" />
+<meta name="DC.creator" content="Freitas, Cláudia" />
+<meta name="DC.creator" content="Gajdošová, Katarína" />
+<meta name="DC.creator" content="Galbraith, Daniel" />
+<meta name="DC.creator" content="Garcia, Marcos" />
+<meta name="DC.creator" content="Ginter, Filip" />
+<meta name="DC.creator" content="Goenaga, Iakes" />
+<meta name="DC.creator" content="Gojenola, Koldo" />
+<meta name="DC.creator" content="Gökırmak, Memduh" />
+<meta name="DC.creator" content="Goldberg, Yoav" />
+<meta name="DC.creator" content="Gómez Guinovart, Xavier" />
+<meta name="DC.creator" content="Gonzáles Saavedra, Berta" />
+<meta name="DC.creator" content="Grioni, Matias" />
+<meta name="DC.creator" content="Grūzītis, Normunds" />
+<meta name="DC.creator" content="Guillaume, Bruno" />
+<meta name="DC.creator" content="Habash, Nizar" />
+<meta name="DC.creator" content="Hajič, Jan" />
+<meta name="DC.creator" content="Hà Mỹ, Linh" />
+<meta name="DC.creator" content="Haug, Dag" />
+<meta name="DC.creator" content="Hladká, Barbora" />
+<meta name="DC.creator" content="Hohle, Petter" />
+<meta name="DC.creator" content="Ion, Radu" />
+<meta name="DC.creator" content="Irimia, Elena" />
+<meta name="DC.creator" content="Johannsen, Anders" />
+<meta name="DC.creator" content="Jørgensen, Fredrik" />
+<meta name="DC.creator" content="Kaşıkara, Hüner" />
+<meta name="DC.creator" content="Kanayama, Hiroshi" />
+<meta name="DC.creator" content="Kanerva, Jenna" />
+<meta name="DC.creator" content="Kotsyba, Natalia" />
+<meta name="DC.creator" content="Krek, Simon" />
+<meta name="DC.creator" content="Laippala, Veronika" />
+<meta name="DC.creator" content="Lê Hồng, Phương" />
+<meta name="DC.creator" content="Lenci, Alessandro" />
+<meta name="DC.creator" content="Ljubešić, Nikola" />
+<meta name="DC.creator" content="Lyashevskaya, Olga" />
+<meta name="DC.creator" content="Lynn, Teresa" />
+<meta name="DC.creator" content="Makazhanov, Aibek" />
+<meta name="DC.creator" content="Manning, Christopher" />
+<meta name="DC.creator" content="Mărănduc, Cătălina" />
+<meta name="DC.creator" content="Mareček, David" />
+<meta name="DC.creator" content="Martínez Alonso, Héctor" />
+<meta name="DC.creator" content="Martins, André" />
+<meta name="DC.creator" content="Mašek, Jan" />
+<meta name="DC.creator" content="Matsumoto, Yuji" />
+<meta name="DC.creator" content="McDonald, Ryan" />
+<meta name="DC.creator" content="Missilä, Anna" />
+<meta name="DC.creator" content="Mititelu, Verginica" />
+<meta name="DC.creator" content="Miyao, Yusuke" />
+<meta name="DC.creator" content="Montemagni, Simonetta" />
+<meta name="DC.creator" content="More, Amir" />
+<meta name="DC.creator" content="Mori, Shunsuke" />
+<meta name="DC.creator" content="Moskalevskyi, Bohdan" />
+<meta name="DC.creator" content="Muischnek, Kadri" />
+<meta name="DC.creator" content="Mustafina, Nina" />
+<meta name="DC.creator" content="Müürisep, Kaili" />
+<meta name="DC.creator" content="Nguyễn Thị, Lương" />
+<meta name="DC.creator" content="Nguyễn Thị Minh, Huyền" />
+<meta name="DC.creator" content="Nikolaev, Vitaly" />
+<meta name="DC.creator" content="Nurmi, Hanna" />
+<meta name="DC.creator" content="Ojala, Stina" />
+<meta name="DC.creator" content="Osenova, Petya" />
+<meta name="DC.creator" content="Øvrelid, Lilja" />
+<meta name="DC.creator" content="Pascual, Elena" />
+<meta name="DC.creator" content="Passarotti, Marco" />
+<meta name="DC.creator" content="Perez, Cenel-Augusto" />
+<meta name="DC.creator" content="Perrier, Guy" />
+<meta name="DC.creator" content="Petrov, Slav" />
+<meta name="DC.creator" content="Piitulainen, Jussi" />
+<meta name="DC.creator" content="Plank, Barbara" />
+<meta name="DC.creator" content="Popel, Martin" />
+<meta name="DC.creator" content="Pretkalniņa, Lauma" />
+<meta name="DC.creator" content="Prokopidis, Prokopis" />
+<meta name="DC.creator" content="Puolakainen, Tiina" />
+<meta name="DC.creator" content="Pyysalo, Sampo" />
+<meta name="DC.creator" content="Rademaker, Alexandre" />
+<meta name="DC.creator" content="Ramasamy, Loganathan" />
+<meta name="DC.creator" content="Real, Livy" />
+<meta name="DC.creator" content="Rituma, Laura" />
+<meta name="DC.creator" content="Rosa, Rudolf" />
+<meta name="DC.creator" content="Saleh, Shadi" />
+<meta name="DC.creator" content="Sanguinetti, Manuela" />
+<meta name="DC.creator" content="Saulīte, Baiba" />
+<meta name="DC.creator" content="Schuster, Sebastian" />
+<meta name="DC.creator" content="Seddah, Djamé" />
+<meta name="DC.creator" content="Seeker, Wolfgang" />
+<meta name="DC.creator" content="Seraji, Mojgan" />
+<meta name="DC.creator" content="Shakurova, Lena" />
+<meta name="DC.creator" content="Shen, Mo" />
+<meta name="DC.creator" content="Sichinava, Dmitry" />
+<meta name="DC.creator" content="Silveira, Natalia" />
+<meta name="DC.creator" content="Simi, Maria" />
+<meta name="DC.creator" content="Simionescu, Radu" />
+<meta name="DC.creator" content="Simkó, Katalin" />
+<meta name="DC.creator" content="Šimková, Mária" />
+<meta name="DC.creator" content="Simov, Kiril" />
+<meta name="DC.creator" content="Smith, Aaron" />
+<meta name="DC.creator" content="Suhr, Alane" />
+<meta name="DC.creator" content="Sulubacak, Umut" />
+<meta name="DC.creator" content="Szántó, Zsolt" />
+<meta name="DC.creator" content="Taji, Dima" />
+<meta name="DC.creator" content="Tanaka, Takaaki" />
+<meta name="DC.creator" content="Tsarfaty, Reut" />
+<meta name="DC.creator" content="Tyers, Francis" />
+<meta name="DC.creator" content="Uematsu, Sumire" />
+<meta name="DC.creator" content="Uria, Larraitz" />
+<meta name="DC.creator" content="van Noord, Gertjan" />
+<meta name="DC.creator" content="Varga, Viktor" />
+<meta name="DC.creator" content="Vincze, Veronika" />
+<meta name="DC.creator" content="Washington, Jonathan North" />
+<meta name="DC.creator" content="Žabokrtský, Zdeněk" />
+<meta name="DC.creator" content="Zeldes, Amir" />
+<meta name="DC.creator" content="Zeman, Daniel" />
+<meta name="DC.creator" content="Zhu, Hanzhi" />
+<meta name="DCTERMS.dateAccepted" content="2017-03-14T13:16:19Z" scheme="DCTERMS.W3CDTF" />
+<meta name="DCTERMS.available" content="2017-03-14T13:16:19Z" scheme="DCTERMS.W3CDTF" />
+<meta name="DCTERMS.issued" content="2017-03-13" scheme="DCTERMS.W3CDTF" />
+<meta name="DC.identifier" content="http://hdl.handle.net/11234/1-1983" xml:lang="*" scheme="DCTERMS.URI" />
+<meta name="DC.description" content="Universal Dependencies is a project that seeks to develop cross-linguistically consistent treebank annotation for many languages, with the goal of facilitating multilingual parser development, cross-lingual learning, and parsing research from a language typology perspective. The annotation scheme is based on (universal) Stanford dependencies (de Marneffe et al., 2006, 2008, 2014), Google universal part-of-speech tags (Petrov et al., 2012), and the Interset interlingua for morphosyntactic tagsets (Zeman, 2008).&#xD;&#xA;&#xD;&#xA;This release is special in that the treebanks will be used as training/development data in the CoNLL 2017 shared task (http://universaldependencies.org/conll17/). Test data are not released, except for the few treebanks that do not take part in the shared task. 64 treebanks will be in the shared task, and they correspond to the following 45 languages: Ancient Greek, Arabic, Basque, Bulgarian, Catalan, Chinese, Croatian, Czech, Danish, Dutch, English, Estonian, Finnish, French, Galician, German, Gothic, Greek, Hebrew, Hindi, Hungarian, Indonesian, Irish, Italian, Japanese, Kazakh, Korean, Latin, Latvian, Norwegian, Old Church Slavonic, Persian, Polish, Portuguese, Romanian, Russian, Slovak, Slovenian, Spanish, Swedish, Turkish, Ukrainian, Urdu, Uyghur and Vietnamese.&#xD;&#xA;&#xD;&#xA;This release fixes a bug in http://hdl.handle.net/11234/1-1976. Changed files: ud-tools-v2.0.tgz (conllu_to_text.pl, conllu_to_conllx.pl; added text_without_spaces.pl), ud-treebanks-conll2017.tgz (fi_ftb-ud-train.txt, he-ud-train.txt, it-ud-train.txt, pt_br-ud-train.txt, es-ud-train.txt) and ud-treebanks-v2.0.tgz (fi_ftb-ud-train.txt, he-ud-train.txt, it-ud-train.txt, pt_br-ud-train.txt, es-ud-train.txt, ar_nyuad-ud-dev.txt, ar_nyuad-ud-test.txt, ar_nyuad-ud-train.txt, cop-ud-dev.txt, cop-ud-test.txt, cop-ud-train.txt, sa-ud-dev.txt, sa-ud-test.txt, sa-ud-train.txt)." xml:lang="en_US" />
+<meta name="DC.language" content="grc" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="ara" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="eus" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="bul" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="hrv" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="ces" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="dan" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="nld" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="eng" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="est" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="fin" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="fra" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="deu" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="got" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="ell" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="heb" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="hin" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="hun" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="ind" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="gle" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="ita" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="jpn" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="lat" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="nor" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="chu" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="fas" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="pol" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="por" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="ron" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="slv" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="spa" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="swe" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="tam" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="cat" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="zho" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="glg" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="kaz" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="lav" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="rus" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="tur" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="cop" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="san" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="slk" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="ukr" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="uig" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="vie" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="bel" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="kor" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="lit" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.language" content="urd" xml:lang="en_US" scheme="DCTERMS.RFC1766" />
+<meta name="DC.publisher" content="Universal Dependencies Consortium" xml:lang="en_US" />
+<meta name="DCTERMS.replaces" content="http://hdl.handle.net/11234/1-1827" xml:lang="en_US" />
+<meta name="DC.rights" content="Licence Universal Dependencies v2.0" xml:lang="*" />
+<meta name="DC.rights" content="https://lindat.mff.cuni.cz/repository/xmlui/page/licence-UD-2.0" xml:lang="*" scheme="DCTERMS.URI" />
+<meta name="DC.source" content="http://universaldependencies.org/" xml:lang="en_US" scheme="DCTERMS.URI" />
+<meta name="DC.subject" content="treebank" xml:lang="en_US" />
+<meta name="DC.subject" content="dependency" xml:lang="en_US" />
+<meta name="DC.subject" content="syntax" xml:lang="en_US" />
+<meta name="DC.subject" content="morphology" xml:lang="en_US" />
+<meta name="DC.subject" content="harmonized annotation" xml:lang="en_US" />
+<meta name="DC.subject" content="interset" xml:lang="en_US" />
+<meta name="DC.subject" content="universal tagset" xml:lang="en_US" />
+<meta name="DC.subject" content="stanford dependencies" xml:lang="en_US" />
+<meta name="DC.title" content="Universal Dependencies 2.0" xml:lang="en_US" />
+<meta name="DC.type" content="corpus" xml:lang="en_US" />
+<meta name="DC.rights" content="PUB" xml:lang="*" />
+
+<meta content="treebank; dependency; syntax; morphology; harmonized annotation; interset; universal tagset; stanford dependencies; corpus" name="citation_keywords" />
+<meta content="Universal Dependencies 2.0" name="citation_title" />
+<meta content="Universal Dependencies Consortium" name="citation_publisher" />
+<meta content="grc" name="citation_language" />
+<meta content="Nivre, Joakim" name="citation_author" />
+<meta content="Agić, Željko" name="citation_author" />
+<meta content="Ahrenberg, Lars" name="citation_author" />
+<meta content="Aranzabe, Maria Jesus" name="citation_author" />
+<meta content="Asahara, Masayuki" name="citation_author" />
+<meta content="Atutxa, Aitziber" name="citation_author" />
+<meta content="Ballesteros, Miguel" name="citation_author" />
+<meta content="Bauer, John" name="citation_author" />
+<meta content="Bengoetxea, Kepa" name="citation_author" />
+<meta content="Bhat, Riyaz Ahmad" name="citation_author" />
+<meta content="Bick, Eckhard" name="citation_author" />
+<meta content="Bosco, Cristina" name="citation_author" />
+<meta content="Bouma, Gosse" name="citation_author" />
+<meta content="Bowman, Sam" name="citation_author" />
+<meta content="Candito, Marie" name="citation_author" />
+<meta content="Cebiroğlu Eryiğit, Gülşen" name="citation_author" />
+<meta content="Celano, Giuseppe G. A." name="citation_author" />
+<meta content="Chalub, Fabricio" name="citation_author" />
+<meta content="Choi, Jinho" name="citation_author" />
+<meta content="Çöltekin, Çağrı" name="citation_author" />
+<meta content="Connor, Miriam" name="citation_author" />
+<meta content="Davidson, Elizabeth" name="citation_author" />
+<meta content="de Marneffe, Marie-Catherine" name="citation_author" />
+<meta content="de Paiva, Valeria" name="citation_author" />
+<meta content="Diaz de Ilarraza, Arantza" name="citation_author" />
+<meta content="Dobrovoljc, Kaja" name="citation_author" />
+<meta content="Dozat, Timothy" name="citation_author" />
+<meta content="Droganova, Kira" name="citation_author" />
+<meta content="Dwivedi, Puneet" name="citation_author" />
+<meta content="Eli, Marhaba" name="citation_author" />
+<meta content="Erjavec, Tomaž" name="citation_author" />
+<meta content="Farkas, Richárd" name="citation_author" />
+<meta content="Foster, Jennifer" name="citation_author" />
+<meta content="Freitas, Cláudia" name="citation_author" />
+<meta content="Gajdošová, Katarína" name="citation_author" />
+<meta content="Galbraith, Daniel" name="citation_author" />
+<meta content="Garcia, Marcos" name="citation_author" />
+<meta content="Ginter, Filip" name="citation_author" />
+<meta content="Goenaga, Iakes" name="citation_author" />
+<meta content="Gojenola, Koldo" name="citation_author" />
+<meta content="Gökırmak, Memduh" name="citation_author" />
+<meta content="Goldberg, Yoav" name="citation_author" />
+<meta content="Gómez Guinovart, Xavier" name="citation_author" />
+<meta content="Gonzáles Saavedra, Berta" name="citation_author" />
+<meta content="Grioni, Matias" name="citation_author" />
+<meta content="Grūzītis, Normunds" name="citation_author" />
+<meta content="Guillaume, Bruno" name="citation_author" />
+<meta content="Habash, Nizar" name="citation_author" />
+<meta content="Hajič, Jan" name="citation_author" />
+<meta content="Hà Mỹ, Linh" name="citation_author" />
+<meta content="Haug, Dag" name="citation_author" />
+<meta content="Hladká, Barbora" name="citation_author" />
+<meta content="Hohle, Petter" name="citation_author" />
+<meta content="Ion, Radu" name="citation_author" />
+<meta content="Irimia, Elena" name="citation_author" />
+<meta content="Johannsen, Anders" name="citation_author" />
+<meta content="Jørgensen, Fredrik" name="citation_author" />
+<meta content="Kaşıkara, Hüner" name="citation_author" />
+<meta content="Kanayama, Hiroshi" name="citation_author" />
+<meta content="Kanerva, Jenna" name="citation_author" />
+<meta content="Kotsyba, Natalia" name="citation_author" />
+<meta content="Krek, Simon" name="citation_author" />
+<meta content="Laippala, Veronika" name="citation_author" />
+<meta content="Lê Hồng, Phương" name="citation_author" />
+<meta content="Lenci, Alessandro" name="citation_author" />
+<meta content="Ljubešić, Nikola" name="citation_author" />
+<meta content="Lyashevskaya, Olga" name="citation_author" />
+<meta content="Lynn, Teresa" name="citation_author" />
+<meta content="Makazhanov, Aibek" name="citation_author" />
+<meta content="Manning, Christopher" name="citation_author" />
+<meta content="Mărănduc, Cătălina" name="citation_author" />
+<meta content="Mareček, David" name="citation_author" />
+<meta content="Martínez Alonso, Héctor" name="citation_author" />
+<meta content="Martins, André" name="citation_author" />
+<meta content="Mašek, Jan" name="citation_author" />
+<meta content="Matsumoto, Yuji" name="citation_author" />
+<meta content="McDonald, Ryan" name="citation_author" />
+<meta content="Missilä, Anna" name="citation_author" />
+<meta content="Mititelu, Verginica" name="citation_author" />
+<meta content="Miyao, Yusuke" name="citation_author" />
+<meta content="Montemagni, Simonetta" name="citation_author" />
+<meta content="More, Amir" name="citation_author" />
+<meta content="Mori, Shunsuke" name="citation_author" />
+<meta content="Moskalevskyi, Bohdan" name="citation_author" />
+<meta content="Muischnek, Kadri" name="citation_author" />
+<meta content="Mustafina, Nina" name="citation_author" />
+<meta content="Müürisep, Kaili" name="citation_author" />
+<meta content="Nguyễn Thị, Lương" name="citation_author" />
+<meta content="Nguyễn Thị Minh, Huyền" name="citation_author" />
+<meta content="Nikolaev, Vitaly" name="citation_author" />
+<meta content="Nurmi, Hanna" name="citation_author" />
+<meta content="Ojala, Stina" name="citation_author" />
+<meta content="Osenova, Petya" name="citation_author" />
+<meta content="Øvrelid, Lilja" name="citation_author" />
+<meta content="Pascual, Elena" name="citation_author" />
+<meta content="Passarotti, Marco" name="citation_author" />
+<meta content="Perez, Cenel-Augusto" name="citation_author" />
+<meta content="Perrier, Guy" name="citation_author" />
+<meta content="Petrov, Slav" name="citation_author" />
+<meta content="Piitulainen, Jussi" name="citation_author" />
+<meta content="Plank, Barbara" name="citation_author" />
+<meta content="Popel, Martin" name="citation_author" />
+<meta content="Pretkalniņa, Lauma" name="citation_author" />
+<meta content="Prokopidis, Prokopis" name="citation_author" />
+<meta content="Puolakainen, Tiina" name="citation_author" />
+<meta content="Pyysalo, Sampo" name="citation_author" />
+<meta content="Rademaker, Alexandre" name="citation_author" />
+<meta content="Ramasamy, Loganathan" name="citation_author" />
+<meta content="Real, Livy" name="citation_author" />
+<meta content="Rituma, Laura" name="citation_author" />
+<meta content="Rosa, Rudolf" name="citation_author" />
+<meta content="Saleh, Shadi" name="citation_author" />
+<meta content="Sanguinetti, Manuela" name="citation_author" />
+<meta content="Saulīte, Baiba" name="citation_author" />
+<meta content="Schuster, Sebastian" name="citation_author" />
+<meta content="Seddah, Djamé" name="citation_author" />
+<meta content="Seeker, Wolfgang" name="citation_author" />
+<meta content="Seraji, Mojgan" name="citation_author" />
+<meta content="Shakurova, Lena" name="citation_author" />
+<meta content="Shen, Mo" name="citation_author" />
+<meta content="Sichinava, Dmitry" name="citation_author" />
+<meta content="Silveira, Natalia" name="citation_author" />
+<meta content="Simi, Maria" name="citation_author" />
+<meta content="Simionescu, Radu" name="citation_author" />
+<meta content="Simkó, Katalin" name="citation_author" />
+<meta content="Šimková, Mária" name="citation_author" />
+<meta content="Simov, Kiril" name="citation_author" />
+<meta content="Smith, Aaron" name="citation_author" />
+<meta content="Suhr, Alane" name="citation_author" />
+<meta content="Sulubacak, Umut" name="citation_author" />
+<meta content="Szántó, Zsolt" name="citation_author" />
+<meta content="Taji, Dima" name="citation_author" />
+<meta content="Tanaka, Takaaki" name="citation_author" />
+<meta content="Tsarfaty, Reut" name="citation_author" />
+<meta content="Tyers, Francis" name="citation_author" />
+<meta content="Uematsu, Sumire" name="citation_author" />
+<meta content="Uria, Larraitz" name="citation_author" />
+<meta content="van Noord, Gertjan" name="citation_author" />
+<meta content="Varga, Viktor" name="citation_author" />
+<meta content="Vincze, Veronika" name="citation_author" />
+<meta content="Washington, Jonathan North" name="citation_author" />
+<meta content="Žabokrtský, Zdeněk" name="citation_author" />
+<meta content="Zeldes, Amir" name="citation_author" />
+<meta content="Zeman, Daniel" name="citation_author" />
+<meta content="Zhu, Hanzhi" name="citation_author" />
+<meta content="https://lindat.mff.cuni.cz/repository/xmlui/bitstream/11234/1-1983/1/ud-treebanks-v2.0.tgz" name="citation_pdf_url" />
+<meta content="2017-03-13" name="citation_date" />
+<meta content="https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-1983" name="citation_abstract_html_url" />
+<link rel="stylesheet" type="text/css" href="//lindat.mff.cuni.cz/aai/discojuice/discojuice.css" />
+</head><!--[if lt IE 7 ]> <body class="ie6"> <![endif]-->
+                <!--[if IE 7 ]>    <body id="lindat-repository" class="ie7"> <![endif]-->
+                <!--[if IE 8 ]>    <body id="lindat-repository" class="ie8"> <![endif]-->
+                <!--[if IE 9 ]>    <body id="lindat-repository" class="ie9"> <![endif]-->
+                <!--[if (gt IE 9)|!(IE)]><!--><body id="lindat-repository"><!--<![endif]-->
+<nav class="lindat-header lindat-common" role="navigation" data-version="1.5.0" data-build="d73d463931712e2fc9c875a0a4673dae1c4e26cb">
+  <button type="button" class="lindat-menu-btn" onclick="document.querySelector('.lindat-menu').classList.toggle('lindat-open')">
+    <span class="lindat-menu-icon">
+      <span class="lindat-icon-bar"> </span>
+      <span class="lindat-icon-bar"> </span>
+      <span class="lindat-icon-bar"> </span>
+    </span>
+  </button>
+  <ul class="lindat-menu">
+    <li class="lindat-home-item">
+      <a href="http://lindat.mff.cuni.cz/en/" class="lindat-logo">
+<span>Home</span>
+</a>
+    </li>
+    <li class="lindat-repository-item">
+      <a href="https://lindat.mff.cuni.cz/repository/xmlui/?locale-attribute=en">
+<span>Repository</span>
+</a>
+    </li>
+    <li class="lindat-pmltq-item">
+      <a href="https://lindat.mff.cuni.cz/services/pmltq/">
+<span>TreeQuery</span>
+</a>
+    </li>
+    <li class="lindat-treex-item">
+      <a href="https://lindat.mff.cuni.cz/services/treex-web/run/">
+<span>Treex</span>
+</a>
+    </li>
+    <li class="lindat-tools-item">
+      <a href="https://lindat.mff.cuni.cz/services">
+<span>More Apps</span>
+</a>
+    </li>
+    <li class="lindat-about-item">
+      <a href="https://lindat.mff.cuni.cz/en/about-lindat-clarin">
+<span>About</span>
+</a>
+    </li>
+    <li class="lindat-clarin-menu">
+      <a href="http://www.clarin.eu" class="clarin-logo">
+<span>CLARIN</span>
+</a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar-fixed-top">
+<div class="container-fluid">
+<ul class="nav navbar-nav navbar-right">
+<li>
+<div style="opacity: 1 !important;" id="userbox">
+<div style="margin: 5px 15px 5px 5px; padding: 5px 10px 5px 10px; font-size: 16px;" class="label label-important">
+<a class="signon" style="color: #FFF;" href="/repository/xmlui/login">
+<i class="fa fa-sign-in fa-lg"> </i>Login</a>
+</div>
+</div>
+</li>
+</ul>
+<ul xmlns:i18n="http://apache.org/cocoon/i18n/2.1" class="nav navbar-nav navbar-left">
+<li>
+<div id="ds-language-selection" data-locale="en">
+<a href="?locale-attribute=en">
+<img src="/repository/xmlui/themes/UFAL/lib/lindat/public/img/flags/en.png" alt="English" title="English" />
+</a>
+<a href="?locale-attribute=cs">
+<img src="/repository/xmlui/themes/UFAL/lib/lindat/public/img/flags/cs.png" alt="čeština" title="čeština" />
+</a>
+</div>
+</li>
+</ul>
+</div>
+</nav>
+<div class="container-fluid">
+<div class="container">
+<div class="row">
+<ul style="padding: 10px;" class="breadcrumb no-radius no-margin">
+<li class="">
+<a href="/repository/xmlui/">LINDAT/CLARIN Repository Home</a>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" class="active">View Item</li>
+<div xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" class="col-xs-12 visible-xs"> </div>
+<form method="post" style="top: -6px;" class="pull-right col-sm-3" action="/repository/xmlui/discover">
+<div class="input-group input-group-sm">
+<input xmlns:i18n="http://apache.org/cocoon/i18n/2.1" placeholder="Search" class="form-control small-search-input" type="text" name="query" />
+<span class="input-group-btn">
+<button type="submit" name="submit" class="btn small-search-btn btn-default">
+<i style="color: #7479B8;" class="fa fa-search"> </i>
+</button>
+</span>
+</div>
+</form>
+</ul>
+</div>
+<div style="margin-top: 5px;" class="visible-xs text-center">
+<button style="border-radius: 30px; width: 100%;" class="btn btn-default btn-sm" type="button" id="showhidemenu">
+<i class="fa fa-align-justify"> </i> Show/Hide Menu
+			</button>
+</div>
+<div class="row contents">
+<div class="sidebar col-sm-3 col-xs-12 hidden-xs" id="options-menu">
+<ul class="nav nav-list">
+<li class="always-open hidden-xs">
+<div class="clearfix" style="background-color: #FFFFFF;">
+<div style="height: 120px; position: relative;" class="col-sm-7">
+<a href="/lindat">
+<img src="/repository/xmlui/themes/UFAL/images/lindat/lindat-logo.png" style="position: absolute; top: 0px; bottom: 0px; left: 0px; right: 0px; padding: 20px;" class="img-responsive" alt="LINDAT/CLARIN logo" />
+</a>
+</div>
+<div style="height: 120px; position: relative;" class="col-sm-5 text-center">
+<a href="http://www.clarin.eu/">
+<img src="/repository/xmlui/themes/UFAL/images/lindat/clarin-logo.png" style="position: absolute; bottom: 0px; left: 0px; right: 0px; padding: 10px;" class="img-responsive" alt="CLARIN logo" />
+</a>
+</div>
+</div>
+</li>
+<li class="always-open hidden-xs">
+<a>
+<i class="fa fa-question-circle"> </i>
+<span class="menu-text">What can you do?</span>
+</a>
+<ul xmlns:i18n="http://apache.org/cocoon/i18n/2.1" style="padding-bottom: 8px;" class="submenu">
+<li>
+<a style="border-top: none; padding: 7px 0px 8px 18px" href="/repository/xmlui/page/deposit">
+<img class="deposit" align="left" src="/repository/xmlui/themes/UFALHome/lib/images/deposit.png" />
+</a>
+</li>
+<li>
+<a style="border-top: none; padding: 7px 0px 8px 18px;" href="/repository/xmlui/page/cite">
+<img class="cite" align="right" src="/repository/xmlui/themes/UFALHome/lib/images/cite.png" />
+</a>
+</li>
+</ul>
+</li>
+<li class="always-open">
+<a onclick="return false;" style="cursor: default;" href="#">
+<i class="fa fa-bullseye  fa-lg"> </i>
+<span class="menu-text">Browse</span>
+<b xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns:confman="org.dspace.core.ConfigurationManager" class="arrow fa fa-caret-down"> </b>
+</a>
+<ul class="submenu">
+<li class="">
+<a class="dropdown-toggle" href="#">
+<i class="fa fa-caret-right"> </i>
+<span class="menu-text">
+<i class="fa fa-angle-right"> </i>All of the Repository</span>
+<b xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns:confman="org.dspace.core.ConfigurationManager" class="arrow fa fa-caret-down"> </b>
+</a>
+<ul class="submenu">
+<li>
+<a href="/repository/xmlui/browse?type=dateissued" class="">
+<i class="fa fa-angle-right"> </i>
+<span class="menu-text">Issue Date</span>
+</a>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1">
+<a href="/repository/xmlui/browse?type=author" class="">
+<i class="fa fa-angle-right"> </i>
+<span class="menu-text">Authors</span>
+</a>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1">
+<a href="/repository/xmlui/browse?type=title" class="">
+<i class="fa fa-angle-right"> </i>
+<span class="menu-text">Titles</span>
+</a>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1">
+<a href="/repository/xmlui/browse?type=subject" class="">
+<i class="fa fa-angle-right"> </i>
+<span class="menu-text">Subjects</span>
+</a>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1">
+<a href="/repository/xmlui/browse?type=publisher" class="">
+<i class="fa fa-angle-right"> </i>
+<span class="menu-text">Publisher</span>
+</a>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1">
+<a href="/repository/xmlui/browse?type=language" class="">
+<i class="fa fa-angle-right"> </i>
+<span class="menu-text">Language</span>
+</a>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1">
+<a href="/repository/xmlui/browse?type=type" class="">
+<i class="fa fa-angle-right"> </i>
+<span class="menu-text">Type</span>
+</a>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1">
+<a href="/repository/xmlui/browse?type=rights" class="">
+<i class="fa fa-angle-right"> </i>
+<span class="menu-text">Rights Label</span>
+</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1" class="always-open">
+<a onclick="return false;" style="cursor: default;" href="#">
+<i class="fa fa-user fa-lg"> </i>
+<span class="menu-text">My Account</span>
+<b xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns:confman="org.dspace.core.ConfigurationManager" class="arrow fa fa-caret-down"> </b>
+</a>
+<ul class="submenu">
+<li>
+<a href="/repository/xmlui/login" class="signon">
+<i class="fa fa-caret-right"> </i>
+<span class="menu-text">
+<i class="fa fa-sign-in fa-lg"> </i>Login</span>
+</a>
+</li>
+</ul>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1" class="always-open">
+<a onclick="return false;" style="cursor: default;" href="#">
+<i class="fa fa-bar-chart-o fa-lg"> </i>
+<span class="menu-text">Statistics</span>
+<b xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns:confman="org.dspace.core.ConfigurationManager" class="arrow fa fa-caret-down"> </b>
+</a>
+<ul class="submenu">
+<li>
+<a href="/repository/xmlui/handle/11234/1-1983/piwik-statistics" class="">
+<i class="fa fa-caret-right"> </i>
+<span class="menu-text">
+<i class="fa fa-area-chart fa-lg"> </i>Statistics<span xmlns:i18n="http://apache.org/cocoon/i18n/2.1" class="label label-important" style="font-size: 14px;">BETA</span>
+</span>
+</a>
+</li>
+</ul>
+</li>
+<li class="always-open">
+<a onclick="return false;" style="cursor: default;" href="#">
+<i class="fa fa-info-circle fa-lg"> </i>
+<span class="menu-text">General Information</span>
+<b xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns:confman="org.dspace.core.ConfigurationManager" class="arrow fa fa-caret-down"> </b>
+</a>
+<ul class="submenu">
+<li>
+<a href="/repository/xmlui/page/deposit" class="">
+<i class="fa fa-caret-right"> </i>
+<span class="menu-text">
+<i class="fa fa-upload fa-lg"> </i>Deposit</span>
+</a>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1">
+<a href="/repository/xmlui/page/cite" class="">
+<i class="fa fa-caret-right"> </i>
+<span class="menu-text">
+<i class="fa fa-quote-right fa-lg"> </i>Cite</span>
+</a>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1">
+<a href="/repository/xmlui/page/item-lifecycle" class="">
+<i class="fa fa-caret-right"> </i>
+<span class="menu-text">
+<i class="fa fa-refresh fa-lg"> </i>Submission Lifecycle</span>
+</a>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1">
+<a href="/repository/xmlui/page/faq" class="">
+<i class="fa fa-caret-right"> </i>
+<span class="menu-text">
+<i class="fa fa-question fa-lg"> </i>FAQ</span>
+</a>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1">
+<a href="/repository/xmlui/page/about" class="">
+<i class="fa fa-caret-right"> </i>
+<span class="menu-text">
+<i class="fa fa-exclamation-circle fa-lg"> </i>About</span>
+</a>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1">
+<a href="mailto:lindat-help@ufal.mff.cuni.cz" class="helpdesk">
+<i class="fa fa-caret-right"> </i>
+<span class="menu-text">
+<i class="fa fa-envelope fa-lg"> </i>Help Desk</span>
+</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div xmlns:i18n="http://apache.org/cocoon/i18n/2.1" class="sidebar col-sm-3 placeholder col-xs-12 hidden-xs"> </div>
+<div class="col-sm-9" id="main-contents">
+<div id="aspect_artifactbrowser_ItemViewer_div_item-view" class=" primary">
+<div xmlns:oreatom="http://www.openarchives.org/ore/atom/" xmlns:ore="http://www.openarchives.org/ore/terms/" xmlns:atom="http://www.w3.org/2005/Atom">
+<!-- External Metadata URL: cocoon://metadata/handle/11234/1-1983/mets.xml-->
+<div xmlns:str="http://exslt.org/strings" class="item-summary-view-metadata">
+<a style="position: relative; top: 10px;" class="print-link pull-right" href="javascript:window.print();">
+<i class="fa fa-print"> </i>
+</a>
+<h3 style="border-bottom: 2px solid #F0F0F0; padding-bottom: 5px;">Universal Dependencies 2.0</h3>
+<div class="refbox" handle="11234/1-1983" title="Universal Dependencies 2.0">
+               		                		
+				</div>
+<div class="item-branding label pull-right">
+<a href="/repository/xmlui/discover?filtertype=branding&amp;filter_relational_operator=equals&amp;filter=LINDAT+%2F+CLARIN">LINDAT / CLARIN</a>
+</div>
+<dl style="clear:both;" class="dl-horizontal" id="item-authors">
+<dt style="text-align: left">
+<i class="fa fa-pencil"> </i>
+<span>Authors</span>
+</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1" style="padding-right: 40px;">
+<span>
+<a href="/repository/xmlui/browse?value=Nivre, Joakim&amp;type=author">Nivre, Joakim</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Agić, Željko&amp;type=author">Agić, Željko</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Ahrenberg, Lars&amp;type=author">Ahrenberg, Lars</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Aranzabe, Maria Jesus&amp;type=author">Aranzabe, Maria Jesus</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Asahara, Masayuki&amp;type=author">Asahara, Masayuki</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Atutxa, Aitziber&amp;type=author">Atutxa, Aitziber</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Ballesteros, Miguel&amp;type=author">Ballesteros, Miguel</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Bauer, John&amp;type=author">Bauer, John</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Bengoetxea, Kepa&amp;type=author">Bengoetxea, Kepa</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Bhat, Riyaz Ahmad&amp;type=author">Bhat, Riyaz Ahmad</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Bick, Eckhard&amp;type=author">Bick, Eckhard</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Bosco, Cristina&amp;type=author">Bosco, Cristina</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Bouma, Gosse&amp;type=author">Bouma, Gosse</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Bowman, Sam&amp;type=author">Bowman, Sam</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Candito, Marie&amp;type=author">Candito, Marie</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Cebiroğlu Eryiğit, Gülşen&amp;type=author">Cebiroğlu Eryiğit, Gülşen</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Celano, Giuseppe G. A.&amp;type=author">Celano, Giuseppe G. A.</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Chalub, Fabricio&amp;type=author">Chalub, Fabricio</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Choi, Jinho&amp;type=author">Choi, Jinho</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Çöltekin, Çağrı&amp;type=author">Çöltekin, Çağrı</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Connor, Miriam&amp;type=author">Connor, Miriam</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Davidson, Elizabeth&amp;type=author">Davidson, Elizabeth</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=de Marneffe, Marie-Catherine&amp;type=author">de Marneffe, Marie-Catherine</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=de Paiva, Valeria&amp;type=author">de Paiva, Valeria</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Diaz de Ilarraza, Arantza&amp;type=author">Diaz de Ilarraza, Arantza</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Dobrovoljc, Kaja&amp;type=author">Dobrovoljc, Kaja</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Dozat, Timothy&amp;type=author">Dozat, Timothy</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Droganova, Kira&amp;type=author">Droganova, Kira</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Dwivedi, Puneet&amp;type=author">Dwivedi, Puneet</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Eli, Marhaba&amp;type=author">Eli, Marhaba</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Erjavec, Tomaž&amp;type=author">Erjavec, Tomaž</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Farkas, Richárd&amp;type=author">Farkas, Richárd</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Foster, Jennifer&amp;type=author">Foster, Jennifer</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Freitas, Cláudia&amp;type=author">Freitas, Cláudia</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Gajdošová, Katarína&amp;type=author">Gajdošová, Katarína</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Galbraith, Daniel&amp;type=author">Galbraith, Daniel</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Garcia, Marcos&amp;type=author">Garcia, Marcos</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Ginter, Filip&amp;type=author">Ginter, Filip</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Goenaga, Iakes&amp;type=author">Goenaga, Iakes</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Gojenola, Koldo&amp;type=author">Gojenola, Koldo</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Gökırmak, Memduh&amp;type=author">Gökırmak, Memduh</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Goldberg, Yoav&amp;type=author">Goldberg, Yoav</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Gómez Guinovart, Xavier&amp;type=author">Gómez Guinovart, Xavier</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Gonzáles Saavedra, Berta&amp;type=author">Gonzáles Saavedra, Berta</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Grioni, Matias&amp;type=author">Grioni, Matias</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Grūzītis, Normunds&amp;type=author">Grūzītis, Normunds</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Guillaume, Bruno&amp;type=author">Guillaume, Bruno</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Habash, Nizar&amp;type=author">Habash, Nizar</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Hajič, Jan&amp;type=author">Hajič, Jan</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Hà Mỹ, Linh&amp;type=author">Hà Mỹ, Linh</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Haug, Dag&amp;type=author">Haug, Dag</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Hladká, Barbora&amp;type=author">Hladká, Barbora</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Hohle, Petter&amp;type=author">Hohle, Petter</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Ion, Radu&amp;type=author">Ion, Radu</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Irimia, Elena&amp;type=author">Irimia, Elena</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Johannsen, Anders&amp;type=author">Johannsen, Anders</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Jørgensen, Fredrik&amp;type=author">Jørgensen, Fredrik</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Kaşıkara, Hüner&amp;type=author">Kaşıkara, Hüner</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Kanayama, Hiroshi&amp;type=author">Kanayama, Hiroshi</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Kanerva, Jenna&amp;type=author">Kanerva, Jenna</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Kotsyba, Natalia&amp;type=author">Kotsyba, Natalia</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Krek, Simon&amp;type=author">Krek, Simon</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Laippala, Veronika&amp;type=author">Laippala, Veronika</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Lê Hồng, Phương&amp;type=author">Lê Hồng, Phương</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Lenci, Alessandro&amp;type=author">Lenci, Alessandro</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Ljubešić, Nikola&amp;type=author">Ljubešić, Nikola</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Lyashevskaya, Olga&amp;type=author">Lyashevskaya, Olga</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Lynn, Teresa&amp;type=author">Lynn, Teresa</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Makazhanov, Aibek&amp;type=author">Makazhanov, Aibek</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Manning, Christopher&amp;type=author">Manning, Christopher</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Mărănduc, Cătălina&amp;type=author">Mărănduc, Cătălina</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Mareček, David&amp;type=author">Mareček, David</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Martínez Alonso, Héctor&amp;type=author">Martínez Alonso, Héctor</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Martins, André&amp;type=author">Martins, André</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Mašek, Jan&amp;type=author">Mašek, Jan</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Matsumoto, Yuji&amp;type=author">Matsumoto, Yuji</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=McDonald, Ryan&amp;type=author">McDonald, Ryan</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Missilä, Anna&amp;type=author">Missilä, Anna</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Mititelu, Verginica&amp;type=author">Mititelu, Verginica</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Miyao, Yusuke&amp;type=author">Miyao, Yusuke</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Montemagni, Simonetta&amp;type=author">Montemagni, Simonetta</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=More, Amir&amp;type=author">More, Amir</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Mori, Shunsuke&amp;type=author">Mori, Shunsuke</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Moskalevskyi, Bohdan&amp;type=author">Moskalevskyi, Bohdan</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Muischnek, Kadri&amp;type=author">Muischnek, Kadri</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Mustafina, Nina&amp;type=author">Mustafina, Nina</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Müürisep, Kaili&amp;type=author">Müürisep, Kaili</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Nguyễn Thị, Lương&amp;type=author">Nguyễn Thị, Lương</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Nguyễn Thị Minh, Huyền&amp;type=author">Nguyễn Thị Minh, Huyền</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Nikolaev, Vitaly&amp;type=author">Nikolaev, Vitaly</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Nurmi, Hanna&amp;type=author">Nurmi, Hanna</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Ojala, Stina&amp;type=author">Ojala, Stina</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Osenova, Petya&amp;type=author">Osenova, Petya</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Øvrelid, Lilja&amp;type=author">Øvrelid, Lilja</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Pascual, Elena&amp;type=author">Pascual, Elena</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Passarotti, Marco&amp;type=author">Passarotti, Marco</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Perez, Cenel-Augusto&amp;type=author">Perez, Cenel-Augusto</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Perrier, Guy&amp;type=author">Perrier, Guy</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Petrov, Slav&amp;type=author">Petrov, Slav</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Piitulainen, Jussi&amp;type=author">Piitulainen, Jussi</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Plank, Barbara&amp;type=author">Plank, Barbara</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Popel, Martin&amp;type=author">Popel, Martin</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Pretkalniņa, Lauma&amp;type=author">Pretkalniņa, Lauma</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Prokopidis, Prokopis&amp;type=author">Prokopidis, Prokopis</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Puolakainen, Tiina&amp;type=author">Puolakainen, Tiina</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Pyysalo, Sampo&amp;type=author">Pyysalo, Sampo</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Rademaker, Alexandre&amp;type=author">Rademaker, Alexandre</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Ramasamy, Loganathan&amp;type=author">Ramasamy, Loganathan</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Real, Livy&amp;type=author">Real, Livy</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Rituma, Laura&amp;type=author">Rituma, Laura</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Rosa, Rudolf&amp;type=author">Rosa, Rudolf</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Saleh, Shadi&amp;type=author">Saleh, Shadi</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Sanguinetti, Manuela&amp;type=author">Sanguinetti, Manuela</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Saulīte, Baiba&amp;type=author">Saulīte, Baiba</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Schuster, Sebastian&amp;type=author">Schuster, Sebastian</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Seddah, Djamé&amp;type=author">Seddah, Djamé</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Seeker, Wolfgang&amp;type=author">Seeker, Wolfgang</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Seraji, Mojgan&amp;type=author">Seraji, Mojgan</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Shakurova, Lena&amp;type=author">Shakurova, Lena</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Shen, Mo&amp;type=author">Shen, Mo</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Sichinava, Dmitry&amp;type=author">Sichinava, Dmitry</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Silveira, Natalia&amp;type=author">Silveira, Natalia</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Simi, Maria&amp;type=author">Simi, Maria</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Simionescu, Radu&amp;type=author">Simionescu, Radu</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Simkó, Katalin&amp;type=author">Simkó, Katalin</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Šimková, Mária&amp;type=author">Šimková, Mária</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Simov, Kiril&amp;type=author">Simov, Kiril</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Smith, Aaron&amp;type=author">Smith, Aaron</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Suhr, Alane&amp;type=author">Suhr, Alane</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Sulubacak, Umut&amp;type=author">Sulubacak, Umut</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Szántó, Zsolt&amp;type=author">Szántó, Zsolt</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Taji, Dima&amp;type=author">Taji, Dima</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Tanaka, Takaaki&amp;type=author">Tanaka, Takaaki</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Tsarfaty, Reut&amp;type=author">Tsarfaty, Reut</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Tyers, Francis&amp;type=author">Tyers, Francis</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Uematsu, Sumire&amp;type=author">Uematsu, Sumire</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Uria, Larraitz&amp;type=author">Uria, Larraitz</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=van Noord, Gertjan&amp;type=author">van Noord, Gertjan</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Varga, Viktor&amp;type=author">Varga, Viktor</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Vincze, Veronika&amp;type=author">Vincze, Veronika</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Washington, Jonathan North&amp;type=author">Washington, Jonathan North</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Žabokrtský, Zdeněk&amp;type=author">Žabokrtský, Zdeněk</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Zeldes, Amir&amp;type=author">Zeldes, Amir</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Zeman, Daniel&amp;type=author">Zeman, Daniel</a>
+</span>; <span>
+<a href="/repository/xmlui/browse?value=Zhu, Hanzhi&amp;type=author">Zhu, Hanzhi</a>
+</span>
+</dd>
+</dl>
+<dl class="dl-horizontal" id="project-url">
+<dt style="text-align: left">
+<i class="fa fa-link"> </i>Project URL</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1">
+<a target="_blank" href="http://universaldependencies.org/">http://universaldependencies.org/</a>
+</dd>
+</dl>
+<dl class="dl-horizontal" id="demo-url">
+<dt style="text-align: left">
+<i class="fa fa-external-link"> </i>Demo URL</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1">
+<a target="_blank" href="http://bionlp-www.utu.fi/dep_search">http://bionlp-www.utu.fi/dep_search</a>
+<br />
+<a target="_blank" href="https://lindat.mff.cuni.cz/services/pmltq/#!/treebanks">https://lindat.mff.cuni.cz/services/pmltq/#!/treebanks</a>
+</dd>
+</dl>
+<dl class="dl-horizontal" id="date-issued">
+<dt style="text-align: left">
+<i class="fa fa-calendar"> </i>Date issued</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1">2017-03-13</dd>
+</dl>
+<dl class="dl-horizontal" id="item-type">
+<dt style="text-align: left">
+<i class="fa fa-tag"> </i>Type</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1">
+<a href="/repository/xmlui/browse?value=corpus&amp;type=type">corpus</a>
+</dd>
+</dl>
+<dl class="dl-horizontal" id="item-type">
+<dt style="text-align: left">
+<i class="fa fa-arrows-alt"> </i>Size</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1">11814230 tokens, 12102983 words, 630518 sentences</dd>
+</dl>
+<dl class="dl-horizontal" id="item-languages">
+<dt style="text-align: left">
+<i class="fa fa-flag "> </i>Language(s)</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1">
+<a href="/repository/xmlui/browse?value=Ancient Greek (to 1453)&amp;type=language">
+<span class="language-iso-code">Ancient Greek (to 1453)</span>
+</a>, <a href="/repository/xmlui/browse?value=Arabic&amp;type=language">
+<span class="language-iso-code">Arabic</span>
+</a>, <a href="/repository/xmlui/browse?value=Basque&amp;type=language">
+<span class="language-iso-code">Basque</span>
+</a>, <a href="/repository/xmlui/browse?value=Belarusian&amp;type=language">
+<span class="language-iso-code">Belarusian</span>
+</a>, <a href="/repository/xmlui/browse?value=Bulgarian&amp;type=language">
+<span class="language-iso-code">Bulgarian</span>
+</a>, <a href="/repository/xmlui/browse?value=Catalan&amp;type=language">
+<span class="language-iso-code">Catalan</span>
+</a>, <a href="/repository/xmlui/browse?value=Chinese&amp;type=language">
+<span class="language-iso-code">Chinese</span>
+</a>, <a href="/repository/xmlui/browse?value=Church Slavic&amp;type=language">
+<span class="language-iso-code">Church Slavic</span>
+</a>, <a href="/repository/xmlui/browse?value=Coptic&amp;type=language">
+<span class="language-iso-code">Coptic</span>
+</a>, <a href="/repository/xmlui/browse?value=Croatian&amp;type=language">
+<span class="language-iso-code">Croatian</span>
+</a>, <a href="/repository/xmlui/browse?value=Czech&amp;type=language">
+<span class="language-iso-code">Czech</span>
+</a>, <a href="/repository/xmlui/browse?value=Danish&amp;type=language">
+<span class="language-iso-code">Danish</span>
+</a>, <a href="/repository/xmlui/browse?value=Dutch&amp;type=language">
+<span class="language-iso-code">Dutch</span>
+</a>, <a href="/repository/xmlui/browse?value=English&amp;type=language">
+<span class="language-iso-code">English</span>
+</a>, <a href="/repository/xmlui/browse?value=Estonian&amp;type=language">
+<span class="language-iso-code">Estonian</span>
+</a>, <a href="/repository/xmlui/browse?value=Finnish&amp;type=language">
+<span class="language-iso-code">Finnish</span>
+</a>, <a href="/repository/xmlui/browse?value=French&amp;type=language">
+<span class="language-iso-code">French</span>
+</a>, <a href="/repository/xmlui/browse?value=Galician&amp;type=language">
+<span class="language-iso-code">Galician</span>
+</a>, <a href="/repository/xmlui/browse?value=German&amp;type=language">
+<span class="language-iso-code">German</span>
+</a>, <a href="/repository/xmlui/browse?value=Gothic&amp;type=language">
+<span class="language-iso-code">Gothic</span>
+</a>, <a href="/repository/xmlui/browse?value=Hebrew&amp;type=language">
+<span class="language-iso-code">Hebrew</span>
+</a>, <a href="/repository/xmlui/browse?value=Hindi&amp;type=language">
+<span class="language-iso-code">Hindi</span>
+</a>, <a href="/repository/xmlui/browse?value=Hungarian&amp;type=language">
+<span class="language-iso-code">Hungarian</span>
+</a>, <a href="/repository/xmlui/browse?value=Indonesian&amp;type=language">
+<span class="language-iso-code">Indonesian</span>
+</a>, <a href="/repository/xmlui/browse?value=Irish&amp;type=language">
+<span class="language-iso-code">Irish</span>
+</a>, <a href="/repository/xmlui/browse?value=Italian&amp;type=language">
+<span class="language-iso-code">Italian</span>
+</a>, <a href="/repository/xmlui/browse?value=Japanese&amp;type=language">
+<span class="language-iso-code">Japanese</span>
+</a>, <a href="/repository/xmlui/browse?value=Kazakh&amp;type=language">
+<span class="language-iso-code">Kazakh</span>
+</a>, <a href="/repository/xmlui/browse?value=Korean&amp;type=language">
+<span class="language-iso-code">Korean</span>
+</a>, <a href="/repository/xmlui/browse?value=Latin&amp;type=language">
+<span class="language-iso-code">Latin</span>
+</a>, <a href="/repository/xmlui/browse?value=Latvian&amp;type=language">
+<span class="language-iso-code">Latvian</span>
+</a>, <a href="/repository/xmlui/browse?value=Lithuanian&amp;type=language">
+<span class="language-iso-code">Lithuanian</span>
+</a>, <a href="/repository/xmlui/browse?value=Modern Greek (1453-)&amp;type=language">
+<span class="language-iso-code">Modern Greek (1453-)</span>
+</a>, <a href="/repository/xmlui/browse?value=Norwegian&amp;type=language">
+<span class="language-iso-code">Norwegian</span>
+</a>, <a href="/repository/xmlui/browse?value=Persian&amp;type=language">
+<span class="language-iso-code">Persian</span>
+</a>, <a href="/repository/xmlui/browse?value=Polish&amp;type=language">
+<span class="language-iso-code">Polish</span>
+</a>, <a href="/repository/xmlui/browse?value=Portuguese&amp;type=language">
+<span class="language-iso-code">Portuguese</span>
+</a>, <a href="/repository/xmlui/browse?value=Romanian&amp;type=language">
+<span class="language-iso-code">Romanian</span>
+</a>, <a href="/repository/xmlui/browse?value=Russian&amp;type=language">
+<span class="language-iso-code">Russian</span>
+</a>, <a href="/repository/xmlui/browse?value=Sanskrit&amp;type=language">
+<span class="language-iso-code">Sanskrit</span>
+</a>, <a href="/repository/xmlui/browse?value=Slovak&amp;type=language">
+<span class="language-iso-code">Slovak</span>
+</a>, <a href="/repository/xmlui/browse?value=Slovenian&amp;type=language">
+<span class="language-iso-code">Slovenian</span>
+</a>, <a href="/repository/xmlui/browse?value=Spanish&amp;type=language">
+<span class="language-iso-code">Spanish</span>
+</a>, <a href="/repository/xmlui/browse?value=Swedish&amp;type=language">
+<span class="language-iso-code">Swedish</span>
+</a>, <a href="/repository/xmlui/browse?value=Tamil&amp;type=language">
+<span class="language-iso-code">Tamil</span>
+</a>, <a href="/repository/xmlui/browse?value=Turkish&amp;type=language">
+<span class="language-iso-code">Turkish</span>
+</a>, <a href="/repository/xmlui/browse?value=Uighur&amp;type=language">
+<span class="language-iso-code">Uighur</span>
+</a>, <a href="/repository/xmlui/browse?value=Ukrainian&amp;type=language">
+<span class="language-iso-code">Ukrainian</span>
+</a>, <a href="/repository/xmlui/browse?value=Urdu&amp;type=language">
+<span class="language-iso-code">Urdu</span>
+</a>, <a href="/repository/xmlui/browse?value=Vietnamese&amp;type=language">
+<span class="language-iso-code">Vietnamese</span>
+</a>
+</dd>
+</dl>
+<dl class="dl-horizontal linkify" id="item-description">
+<dt style="text-align: left">
+<i class="fa fa-file-text-o"> </i>Description</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1" style="white-space: pre-line;">Universal Dependencies is a project that seeks to develop cross-linguistically consistent treebank annotation for many languages, with the goal of facilitating multilingual parser development, cross-lingual learning, and parsing research from a language typology perspective. The annotation scheme is based on (universal) Stanford dependencies (de Marneffe et al., 2006, 2008, 2014), Google universal part-of-speech tags (Petrov et al., 2012), and the Interset interlingua for morphosyntactic tagsets (Zeman, 2008).&#13;
+&#13;
+This release is special in that the treebanks will be used as training/development data in the CoNLL 2017 shared task (http://universaldependencies.org/conll17/). Test data are not released, except for the few treebanks that do not take part in the shared task. 64 treebanks will be in the shared task, and they correspond to the following 45 languages: Ancient Greek, Arabic, Basque, Bulgarian, Catalan, Chinese, Croatian, Czech, Danish, Dutch, English, Estonian, Finnish, French, Galician, German, Gothic, Greek, Hebrew, Hindi, Hungarian, Indonesian, Irish, Italian, Japanese, Kazakh, Korean, Latin, Latvian, Norwegian, Old Church Slavonic, Persian, Polish, Portuguese, Romanian, Russian, Slovak, Slovenian, Spanish, Swedish, Turkish, Ukrainian, Urdu, Uyghur and Vietnamese.&#13;
+&#13;
+This release fixes a bug in http://hdl.handle.net/11234/1-1976. Changed files: ud-tools-v2.0.tgz (conllu_to_text.pl, conllu_to_conllx.pl; added text_without_spaces.pl), ud-treebanks-conll2017.tgz (fi_ftb-ud-train.txt, he-ud-train.txt, it-ud-train.txt, pt_br-ud-train.txt, es-ud-train.txt) and ud-treebanks-v2.0.tgz (fi_ftb-ud-train.txt, he-ud-train.txt, it-ud-train.txt, pt_br-ud-train.txt, es-ud-train.txt, ar_nyuad-ud-dev.txt, ar_nyuad-ud-test.txt, ar_nyuad-ud-train.txt, cop-ud-dev.txt, cop-ud-test.txt, cop-ud-train.txt, sa-ud-dev.txt, sa-ud-test.txt, sa-ud-train.txt).</dd>
+</dl>
+<dl class="dl-horizontal" id="item-publisher">
+<dt style="text-align: left">
+<i class="fa fa-copy"> </i>Publisher</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1">
+<a href="/repository/xmlui/browse?value=Universal Dependencies Consortium&amp;type=publisher">Universal Dependencies Consortium</a>
+</dd>
+</dl>
+<dl class="dl-horizontal" id="item-sponsor">
+<dt style="text-align: left">
+<i class="fa fa-money"> </i>Acknowledgement</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1">
+<div class="funding">
+<p class="funding-org">Grantová agentura České republiky</p>
+<p class="funding-code">Project code: 15-10472S</p>
+<p xmlns:i18n="http://apache.org/cocoon/i18n/2.1" class="funding-name">Project name: Morphologically and Syntactically Annotated Corpora of Many Languages</p>
+</div>
+</dd>
+</dl>
+<dl xmlns:i18n="http://apache.org/cocoon/i18n/2.1" class="dl-horizontal" id="item-subject">
+<dt style="text-align: left">
+<i class="fa fa-tags"> </i>Subject(s)</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1">
+<span class="tag">
+<a class="label label-primary" href="/repository/xmlui/browse?value=treebank&amp;type=subject">treebank</a>
+</span>
+<span class="tag">
+<a class="label label-primary" href="/repository/xmlui/browse?value=dependency&amp;type=subject">dependency</a>
+</span>
+<span class="tag">
+<a class="label label-primary" href="/repository/xmlui/browse?value=syntax&amp;type=subject">syntax</a>
+</span>
+<span class="tag">
+<a class="label label-primary" href="/repository/xmlui/browse?value=morphology&amp;type=subject">morphology</a>
+</span>
+<span class="tag">
+<a class="label label-primary" href="/repository/xmlui/browse?value=harmonized annotation&amp;type=subject">harmonized annotation</a>
+</span>
+<span class="tag">
+<a class="label label-primary" href="/repository/xmlui/browse?value=interset&amp;type=subject">interset</a>
+</span>
+<span class="tag">
+<a class="label label-primary" href="/repository/xmlui/browse?value=universal tagset&amp;type=subject">universal tagset</a>
+</span>
+<span class="tag">
+<a class="label label-primary" href="/repository/xmlui/browse?value=stanford dependencies&amp;type=subject">stanford dependencies</a>
+</span>
+</dd>
+</dl>
+<dl class="dl-horizontal" id="item-subject">
+<dt style="text-align: left">
+<i class="fa fa-sitemap"> </i>Collection(s)</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1">
+<span>
+<a href="/repository/xmlui/handle/11858/00-097C-0000-0001-4877-A">
+<dim:field xmlns:dim="http://www.dspace.org/xmlns/dspace/dim" xmlns:mets="http://www.loc.gov/METS/" xmlns:xlink="http://www.w3.org/TR/xlink/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" mdschema="dc" element="title">LINDAT / CLARIN Data &amp; Tools</dim:field>
+</a>
+</span>
+</dd>
+</dl>
+<dl class="dl-horizontal">
+<dt style="text-align: left">
+<a style="padding-left:0" class="btn btn-link" href="/repository/xmlui/handle/11234/1-1983?show=full">Show full item record</a>
+</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1" class="text-right">
+						 
+					</dd>
+</dl>
+</div>
+<div xmlns:str="http://exslt.org/strings" id="files_section">
+<h4>
+<i class="fa fa-paperclip"> </i>Files in this item<a xmlns:i18n="http://apache.org/cocoon/i18n/2.1" class="label label-info pull-right" id="download-all-button" href="#" onclick="$('#download_all_alert').toggle();$('#download_all_alert').focus(); return false;">
+<i class="fa fa-download"> </i>Download all files in item (399.22
+MB)</a>
+<div style="margin-top: 20px; display: none;" class="alert alert-warning" id="download_all_alert">
+<button onclick="$('#download_all_alert').hide();" class="close" type="button">×</button>
+<p>Large Size</p>
+<p style="margin-bottom: 10px;">
+<small class="text-warning">The requested files are being packed into one large file. This process can take some time, please be patient.</small>
+</p>
+<a style="text-decoration: none;" data-href="/repository/xmlui/handle/11234/1-1983/allzip">
+<button class="btn btn-warning btn-sm">Continue</button>
+</a>
+<button onclick="javascript:$('#download_all_alert').hide();" class="btn btn-default btn-sm" type="button">Cancel</button>
+</div>
+</h4>
+<div class="alert alert-info text-center">This item is <div xmlns:i18n="http://apache.org/cocoon/i18n/2.1" class="label label-PUB">Publicly Available</div> and licensed under:<BR />
+<a href="https://lindat.mff.cuni.cz/repository/xmlui/page/licence-UD-2.0">Licence Universal Dependencies v2.0</a>
+<div style="padding: 5px;">
+<img title="GNU General Public License, version 3.0" alt="GNU General Public License, version 3.0" src="/repository/xmlui/themes/UFAL/images/licenses/gplv3.png" height="24" width="24" />
+<img title="Distributed under Creative Commons" alt="Distributed under Creative Commons" src="/repository/xmlui/themes/UFAL/images/licenses/cc.png" height="24" width="24" />
+</div>
+</div>
+<div class="thumbnails">
+<div style="margin-bottom: 10px;" class="thumbnail">
+<a href="/repository/xmlui/bitstream/handle/11234/1-1983/ud-treebanks-v2.0.tgz?sequence=1&amp;isAllowed=y">
+<img style="height: 80px;" onerror="this.src='/repository/xmlui/themes/UFAL/images/mime/application-octet-stream.png'" src="/repository/xmlui/themes/UFAL/images/mime/application-x-gzip.png" alt="Icon" class="pull-right" />
+</a>
+<dl class="dl-horizontal">
+<dt>Name</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1" title="ud-treebanks-v2.0.tgz">ud-treebanks-v2.0.tgz</dd>
+<dt>Size</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1">180.67
+MB</dd>
+<dt xmlns:i18n="http://apache.org/cocoon/i18n/2.1">Format</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1">application/x-gzip</dd>
+<dt xmlns:i18n="http://apache.org/cocoon/i18n/2.1">Description</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1">Treebank data</dd>
+<dt>MD5</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1">0fc5576ebade87a0733cc323d529d784</dd>
+</dl>
+<a class="filebutton label label-info" href="/repository/xmlui/bitstream/handle/11234/1-1983/ud-treebanks-v2.0.tgz?sequence=1&amp;isAllowed=y">
+<i class="fa fa-chevron-circle-down"> </i>Download file</a>
+</div>
+<div xmlns:i18n="http://apache.org/cocoon/i18n/2.1" style="margin-bottom: 10px;" class="thumbnail">
+<a href="/repository/xmlui/bitstream/handle/11234/1-1983/ud-treebanks-conll2017.tgz?sequence=2&amp;isAllowed=y">
+<img style="height: 80px;" onerror="this.src='/repository/xmlui/themes/UFAL/images/mime/application-octet-stream.png'" src="/repository/xmlui/themes/UFAL/images/mime/application-x-gzip.png" alt="Icon" class="pull-right" />
+</a>
+<dl class="dl-horizontal">
+<dt>Name</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1" title="ud-treebanks-conll2017.tgz">ud-treebanks-conll2017.tgz</dd>
+<dt>Size</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1">174.86
+MB</dd>
+<dt xmlns:i18n="http://apache.org/cocoon/i18n/2.1">Format</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1">application/x-gzip</dd>
+<dt xmlns:i18n="http://apache.org/cocoon/i18n/2.1">Description</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1">Training and development data for the CoNLL 2017 shared task</dd>
+<dt>MD5</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1">f4869f28c376c360c740ef8caafdfffd</dd>
+</dl>
+<a class="filebutton label label-info" href="/repository/xmlui/bitstream/handle/11234/1-1983/ud-treebanks-conll2017.tgz?sequence=2&amp;isAllowed=y">
+<i class="fa fa-chevron-circle-down"> </i>Download file</a>
+</div>
+<div xmlns:i18n="http://apache.org/cocoon/i18n/2.1" style="margin-bottom: 10px;" class="thumbnail">
+<a href="/repository/xmlui/bitstream/handle/11234/1-1983/ud-documentation-v2.0.tgz?sequence=3&amp;isAllowed=y">
+<img style="height: 80px;" onerror="this.src='/repository/xmlui/themes/UFAL/images/mime/application-octet-stream.png'" src="/repository/xmlui/themes/UFAL/images/mime/application-x-gzip.png" alt="Icon" class="pull-right" />
+</a>
+<dl class="dl-horizontal">
+<dt>Name</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1" title="ud-documentation-v2.0.tgz">ud-documentation-v2.0.tgz</dd>
+<dt>Size</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1">43.5
+MB</dd>
+<dt xmlns:i18n="http://apache.org/cocoon/i18n/2.1">Format</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1">application/x-gzip</dd>
+<dt xmlns:i18n="http://apache.org/cocoon/i18n/2.1">Description</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1">Documentation</dd>
+<dt>MD5</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1">fbe08dd83675da3ac1e54a5ee67d1a69</dd>
+</dl>
+<a class="filebutton label label-info" href="/repository/xmlui/bitstream/handle/11234/1-1983/ud-documentation-v2.0.tgz?sequence=3&amp;isAllowed=y">
+<i class="fa fa-chevron-circle-down"> </i>Download file</a>
+</div>
+<div xmlns:i18n="http://apache.org/cocoon/i18n/2.1" style="margin-bottom: 10px;" class="thumbnail">
+<a href="/repository/xmlui/bitstream/handle/11234/1-1983/ud-tools-v2.0.tgz?sequence=4&amp;isAllowed=y">
+<img style="height: 80px;" onerror="this.src='/repository/xmlui/themes/UFAL/images/mime/application-octet-stream.png'" src="/repository/xmlui/themes/UFAL/images/mime/application-x-gzip.png" alt="Icon" class="pull-right" />
+</a>
+<dl class="dl-horizontal">
+<dt>Name</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1" title="ud-tools-v2.0.tgz">ud-tools-v2.0.tgz</dd>
+<dt>Size</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1">192.19
+KB</dd>
+<dt xmlns:i18n="http://apache.org/cocoon/i18n/2.1">Format</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1">application/x-gzip</dd>
+<dt xmlns:i18n="http://apache.org/cocoon/i18n/2.1">Description</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1">Tools</dd>
+<dt>MD5</dt>
+<dd xmlns:i18n="http://apache.org/cocoon/i18n/2.1">68c0c53a740a87eaeae18cd528a915c2</dd>
+</dl>
+<a class="filebutton label label-info" href="/repository/xmlui/bitstream/handle/11234/1-1983/ud-tools-v2.0.tgz?sequence=4&amp;isAllowed=y">
+<i class="fa fa-chevron-circle-down"> </i>Download file</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<a xmlns:i18n="http://apache.org/cocoon/i18n/2.1" id="repository_path" class="hidden" href="/repository/xmlui"> </a>
+<!-- FOOTER -->
+<div class="lindat-common lindat-footer" data-version="1.5.0" data-build="d73d463931712e2fc9c875a0a4673dae1c4e26cb">
+  <div class="lindat-footer-main">
+    <div class="lindat-footer-content lindat-container">
+      <div class="lindat-footer-left">
+        <a class="lindat-clarinb-logo" href="http://hdl.handle.net/1839/00-DOCS.CLARIN.EU-99" title="Clarin B Center"> </a>
+        <a class="lindat-dsa-logo" href="https://assessment.datasealofapproval.org/assessment_92/seal/html" title="Data Seal of Approval"> </a>
+        <a class="lindat-clarink-logo" href="http://hdl.handle.net/1839/00-DOCS.CLARIN.EU-114" title="Clarin K Center"> </a>
+      </div>
+      <div class="lindat-footer-text">
+        <div class="lindat-footer-text1">
+          <h1>Partners, Coordination, Funding</h1>
+  <ul>
+<li>
+<a href="http://www.kky.zcu.cz/en">Dept. of Cybernetics, Univ. of West Bohemia</a>
+</li>
+    <li>
+<a href="http://ufal.mff.cuni.cz">Institute of Formal and Applied Linguistics (Prague)</a>
+</li>
+    <li>
+<a href="http://www.ujc.cas.cz">Institute of Czech Language (Prague)</a>
+</li>
+    <li>
+<a href="http://nlp.fi.muni.cz">NLP Centre, Masaryk University (Brno)</a>
+</li>
+    <li>
+<a href="http://www.msmt.cz">Ministry of Education, Sports and Youth of the Czech Republic</a>
+</li>
+    </ul>
+        </div>
+        <div class="lindat-footer-text2">
+          <h1>Repository</h1>
+  <ul>
+<li>
+<a href="https://lindat.mff.cuni.cz/repository/xmlui/?locale-attribute=en">Main page</a>
+</li>
+    <li>
+<a href="https://lindat.mff.cuni.cz/en/about-lindat-clarin">Contact</a>
+</li>
+    <li>
+<a href="https://lindat.mff.cuni.cz/repository/xmlui/page/item-lifecycle?locale-attribute=en">Submission Lifecycle</a>
+</li>
+    <li>
+<a href="https://lindat.mff.cuni.cz/repository/xmlui/page/faq?locale-attribute=en">FAQ</a>
+</li>
+    <li>
+<a href="https://lindat.mff.cuni.cz/repository/xmlui/page/about?locale-attribute=en">About and Policies</a>
+</li>
+    </ul>
+        </div>
+        <div class="lindat-footer-text3">
+          <h1>More</h1>
+  <ul>
+<li>
+<a href="https://lindat.mff.cuni.cz/en/clarin-knowledge-centre">CLARIN Knowledge Centre</a> | <a href="http://clarino.uib.no/iness/page?page-id=Getting_started">INESS</a>
+</li>
+    <li>
+<a href="http://www.clarin.eu/">CLARIN</a>
+</li>
+    <li>
+<a href="http://www.meta-net.eu/">META-Net</a>
+</li>
+    <li>
+<a href="https://lindat.mff.cuni.cz/en/monitoring">Service Status</a>
+</li>
+    <li>
+<a href="https://lindat.mff.cuni.cz/en/how-do-i-sign-up">How to Sign in</a>
+</li>
+    <li>
+<a href="https://lindat.mff.cuni.cz/en/terms-of-use">Terms of Use</a>
+</li>
+    </ul>
+        </div>
+      </div>
+      <div class="lindat-footer-right">
+        <a class="lindat-logo-mono" href="http://lindat.mff.cuni.cz/lindat/" title="LINDAT/CLARIN"> </a>
+        <a class="lindat-msmt-logo" href="http://www.msmt.cz/" title="MŠMT"> </a>
+      </div>
+    </div>
+  </div>
+  <div class="lindat-copyright">
+    <p>
+      <strong>
+<span>THE LINDAT/CLARIN PROJECT (LM2010013) IS FULLY SUPPORTED BY THE MINISTRY OF EDUCATION, SPORTS</span>
+<br />
+<span>AND YOUTH OF THE CZECH REPUBLIC UNDER THE PROGRAMME LM OF "LARGE INFRASTRUCTURES".</span>
+</strong>
+    </p>
+    <p>Copyright (c) 2017 UFAL MFF UK. All rights reserved.</p>
+  </div>
+  
+  <script type="text/javascript">
+    //
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    // main LINDAT/CLARIN tracker
+    ga('create', 'UA-27008245-2', 'cuni.cz');
+    ga('send', 'pageview');
+    //
+  </script>
+
+  <!-- Piwik LINDAT/CLARIN tracker -->
+  <script type="text/javascript">
+    //
+    var _paq = _paq || [];
+    _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+    _paq.push(["setCookieDomain", "*.mff.cuni.cz"]);
+    _paq.push(["setDomains", ["*.mff.cuni.cz"]]);
+    _paq.push(['setCustomVariable', 1, "source", "common-theme", "page"]);
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u='//ufal.mff.cuni.cz/piwik/';
+      _paq.push(['setTrackerUrl', u+'piwik.php']);
+      _paq.push(['setSiteId', 2]);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+    })();
+    //
+  </script>
+  <noscript>
+<p>
+<img src="//ufal.mff.cuni.cz/piwik/piwik.php?idsite=2" style="border:0;" alt="" />
+</p>
+</noscript>
+  <!-- End Piwik Code -->
+  
+</div>
+<!-- FOOTER END -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js" type="text/javascript"> </script>
+<script src="/repository/xmlui/themes/UFAL/lib/js/jquery-ui.js" type="text/javascript"> </script>
+<script src="/repository/xmlui/themes/UFAL/lib/js/jquery.i18n.js" type="text/javascript"> </script>
+<script type="text/javascript" src="/repository/xmlui/themes/UFAL/lib/js/messages/messages.js"> </script>
+<script src="//lindat.mff.cuni.cz/aai/discojuice/discojuice-2.1.en.min.js" type="text/javascript"> </script>
+<script src="//lindat.mff.cuni.cz/aai/aai.js" type="text/javascript"> </script>
+<script type="text/javascript">!window.jQuery && document.write('<script type="text/javascript" src="/repository/xmlui/static/js/jquery-1.7.min.js"> <\/script>')</script>
+<script type="text/javascript" src="/repository/xmlui/themes/UFAL/lib/js/aai_config.js"> </script><!--[if lt IE 7 ]>
+<script type="text/javascript" src="/repository/xmlui/themes/UFAL/lib/js/DD_belatedPNG_0.0.8a.js?v=1"> </script>
+<script type="text/javascript">DD_belatedPNG.fix('#ds-header-logo');DD_belatedPNG.fix('#ds-footer-logo');$.each($('img[src$=png]'), function() {DD_belatedPNG.fixPng(this);});</script><![endif]-->
+<script type="text/javascript" src="/repository/xmlui/themes/UFAL/lib/bootstrap/js/bootstrap.min.js"> </script>
+<script type="text/javascript" src="/repository/xmlui/themes/UFAL/lib/bootstrap/js/bootstrap3-typeahead.js"> </script>
+<script type="text/javascript" src="/repository/xmlui/themes/UFAL/lib/bootstrap/js/ufal.min.js"> </script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"> </script>
+<script type="text/javascript" src="/repository/xmlui/themes/UFAL/lib/lindat/public/js/lindat-refbox.js"> </script>
+<script type="text/javascript">
+            runAfterJSImports.execute();
+        </script></body></html>
