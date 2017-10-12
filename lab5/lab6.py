@@ -33,24 +33,35 @@ def encode_classes(y_symbols):
     y = [inv_dict_classes[i] for i in y_symbols]
     return y, dict_classes, inv_dict_classes
 
-def extract_features(sentences, feature_names, classifer, dict_classes,vec):
+def extract_features(sentences, feature_names, classifier, dict_classes,vec):
 
     X_l = []
     y_l = []
     for sentence in sentences:
-        X, y = extract_features_sent(sentence, feature_names, classifier, dict_classes, vec)
+        X = extract_features_sent(sentence, feature_names, classifier, dict_classes, vec)
         X_l.extend(X)
-        y_l.extend(y)
+        #y_l.extend(y)
     return X_l, y_l
 
 
 def parse_ml(stack, queue, graph, trans):
+
     if stack and trans[:2] == 'ra':
         stack, queue, graph = transition.right_arc(stack, queue,graph, trans[3:])
         return stack, queue, graph, 'ra'
     if stack and trans[:2] == 'la':
         stack, queue, graph = transition.left_arc(stack, queue, graph,trans[3:])
         return stack, queue, graph, 'la'
+    if trans == 're':
+        stack, queue, graph = transition.reduce(stack, queue, graph)
+        return stack, queue, graph, 're'
+    if trans == 'sh':
+        stack, queue, graph = transition.shift(stack, queue, graph)
+        return stack, queue, graph, 'sh'
+
+    print(trans, "is not a valid action")
+
+    return None
 
 def extract_features_sent(sentence, feature_names, classifier, dict_classes, vec):
 
@@ -61,7 +72,6 @@ def extract_features_sent(sentence, feature_names, classifier, dict_classes, vec
     graph['heads']['0'] = '0'
     graph['deprels'] = {}
     graph['deprels']['0'] = 'ROOT'
-
     transitions = []
 
     x = list()
@@ -84,34 +94,36 @@ def extract_features_sent(sentence, feature_names, classifier, dict_classes, vec
 
         x.append(transition.can_reduce(stack, graph))
         x.append(transition.can_leftarc(stack, graph))
-        X.append(dict(zip(feature_names, x)))
+        X = (dict(zip(feature_names, x)))
         #remove reference, predict what action should be done(equiv to trans)
-        trans_nr[0] = classifier.predict(vec.fit_transform(X))
-
-        stack, queue, graph = parse_ml(stack, queue, graph, trans_nr[0])
+        #print('Stack is ', len(stack))
+        #print('Queue is ', queue)
+        trans_nr = classifier.predict(vec.transform(X))
+        print(trans_nr[0])
+        trans = dict_classes[trans_nr[0]]
+        stack, queue, graph, trans = parse_ml(stack, queue, graph, trans)
         x = list()
     #stack, graph = transition.empty_stack(stack, graph)
 
     transition.empty_stack(stack, graph)
     for word in sentence:
-        #Set the words
-    word['head'] = graph['heads'][word['id']]
-    #do cooreespomdoing for deprels
-
-
-    return X
+        word['head'] = graph['heads'][word['id']]
+        word['deprel'] = graph['deprels'][word['id']]
+    return graph
 
 if __name__ == '__main__':
     test_file = 'swedish_talbanken05_test_blind.conll'
     sentences = conll.read_sentences(test_file)
+    column_names_2006 = ['id', 'form', 'lemma', 'cpostag', 'postag', 'feats', 'head', 'deprel', 'phead', 'pdeprel']
     column_names_2006_test = ['id', 'form', 'lemma', 'cpostag', 'postag', 'feats']
     formatted_corpus = conll.split_rows(sentences, column_names_2006_test)
     feature_names = ['stack0_POS', 'stack0_word', 'queue0_POS', 'queue0_word', 'can-la',
                      'can-re']
 
     classifier = pickle.load( open('model1.pkl', 'rb'))
-    print(classifier)
+    #print(classifier)
     dict_classes = pickle.load( open('dict_classes1.pkl','rb'))
     vec = pickle.load(open ('vec1.pkl', 'rb'))
-    print(vec)
-    X_dict, y_dict = extract_features(formatted_corpus, feature_names, classifier, dict_classes, vec)
+    #print(vec)
+    extract_features(formatted_corpus, feature_names, classifier, dict_classes, vec)
+    conll.save("parsedTestSentences", formatted_corpus, column_names_2006)

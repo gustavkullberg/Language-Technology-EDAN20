@@ -93,6 +93,7 @@ def extract_features_sent(sentence, feature_names):
 
         x.append(transition.can_reduce(stack, graph))
         x.append(transition.can_leftarc(stack, graph))
+
         X.append(dict(zip(feature_names, x)))
 #remove reference, predict what action should be done(equiv to trans)
         stack, queue, graph, trans = dparser.reference(stack, queue, graph)
@@ -128,7 +129,14 @@ if __name__ == '__main__':
 
     classifier = linear_model.LogisticRegression(penalty='l2', dual=True, solver='liblinear', verbose=1)
     model = classifier.fit(X, y)
+
+    y_test_predicted = classifier.predict(X)
+
+    print("Classification report for classifier %s:\n%s\n"
+          % (classifier, metrics.classification_report(y, y_test_predicted)))
+
     pickle.dump(classifier, open("model1.pkl", "wb"))
     pickle.dump(dict_classes, open("dict_classes1.pkl", "wb"))
     pickle.dump(vec, open("vec1.pkl", "wb"))
     print(model)
+    conll.save("gold_stadard", formatted_corpus, column_names_2006)
