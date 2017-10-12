@@ -1,5 +1,3 @@
-
-
 import transition
 import conll
 import dparser
@@ -12,6 +10,7 @@ from sklearn import tree
 from sklearn.naive_bayes import GaussianNB
 from sklearn.grid_search import GridSearchCV
 import pickle
+
 
 def encode_classes(y_symbols):
     """
@@ -34,34 +33,26 @@ def encode_classes(y_symbols):
     y = [inv_dict_classes[i] for i in y_symbols]
     return y, dict_classes, inv_dict_classes
 
-def extract_features(sentences, feature_names):
-    """
-    Builds X matrix and y vector
-    X is a list of dictionaries and y is a list
-    :param sentences:
-    :param w_size:
-    :return:
-    """
+def extract_features(sentences, feature_names, classifer, dict_classes,vec):
+
     X_l = []
     y_l = []
     for sentence in sentences:
-        X, y = extract_features_sent(sentence, feature_names)
+        X, y = extract_features_sent(sentence, feature_names, classifier, dict_classes, vec)
         X_l.extend(X)
         y_l.extend(y)
     return X_l, y_l
 
 
+def parse_ml(stack, queue, graph, trans):
+    if stack and trans[:2] == 'ra':
+        stack, queue, graph = transition.right_arc(stack, queue,graph, trans[3:])
+        return stack, queue, graph, 'ra'
+    if stack and trans[:2] == 'la':
+        stack, queue, graph = transition.left_arc(stack, queue, graph,trans[3:])
+        return stack, queue, graph, 'la'
 
-def extract_features_sent(sentence, feature_names):
-    """
-    Extract the features from one sentence
-    returns X and y, where X is a list of dictionaries and
-    y is a list of symbols
-    :param sentence:
-    :param w_size:
-    :return:
-    """
-    #sentence  = sentence.splitlines()
+def extract_features_sent(sentence, feature_names, classifier, dict_classes, vec):
 
     stack = []
     graph = {}
@@ -94,41 +85,33 @@ def extract_features_sent(sentence, feature_names):
         x.append(transition.can_reduce(stack, graph))
         x.append(transition.can_leftarc(stack, graph))
         X.append(dict(zip(feature_names, x)))
-#remove reference, predict what action should be done(equiv to trans)
-        stack, queue, graph, trans = dparser.reference(stack, queue, graph)
-        y.append(trans)
+        #remove reference, predict what action should be done(equiv to trans)
+        trans_nr[0] = classifier.predict(vec.fit_transform(X))
+
+        stack, queue, graph = parse_ml(stack, queue, graph, trans_nr[0])
         x = list()
     #stack, graph = transition.empty_stack(stack, graph)
 
+    transition.empty_stack(stack, graph)
+    for word in sentence:
+        #Set the words
+    word['head'] = graph['heads'][word['id']]
+    #do cooreespomdoing for deprels
 
-    #for word in queue:
-        #print(word['form'])
-        #stack, queue, graph, trans = reference(stack, queue, graph)
-        #transitions.append(trans)
-       # stack, graph = transition.empty_stack(stack, graph)
-    return X, y
 
+    return X
 
 if __name__ == '__main__':
-    train_file = 'swedish_talbanken05_train.conll'
     test_file = 'swedish_talbanken05_test_blind.conll'
-    column_names_2006 = ['id', 'form', 'lemma', 'cpostag', 'postag', 'feats', 'head', 'deprel', 'phead', 'pdeprel']
+    sentences = conll.read_sentences(test_file)
     column_names_2006_test = ['id', 'form', 'lemma', 'cpostag', 'postag', 'feats']
-
-    sentences = conll.read_sentences(train_file)
-    formatted_corpus = conll.split_rows(sentences, column_names_2006)
+    formatted_corpus = conll.split_rows(sentences, column_names_2006_test)
     feature_names = ['stack0_POS', 'stack0_word', 'queue0_POS', 'queue0_word', 'can-la',
                      'can-re']
-    X_dict, y_dict = extract_features(formatted_corpus, feature_names)
-    print(X_dict)
-    vec = DictVectorizer(sparse=True)
-    X = vec.fit_transform(X_dict)
 
-    y, dict_classes, inv_dict_classes = encode_classes(y_dict)
-
-    classifier = linear_model.LogisticRegression(penalty='l2', dual=True, solver='liblinear', verbose=1)
-    model = classifier.fit(X, y)
-    pickle.dump(classifier, open("model1.pkl", "wb"))
-    pickle.dump(dict_classes, open("dict_classes1.pkl", "wb"))
-    pickle.dump(vec, open("vec1.pkl", "wb"))
-    print(model)
+    classifier = pickle.load( open('model1.pkl', 'rb'))
+    print(classifier)
+    dict_classes = pickle.load( open('dict_classes1.pkl','rb'))
+    vec = pickle.load(open ('vec1.pkl', 'rb'))
+    print(vec)
+    X_dict, y_dict = extract_features(formatted_corpus, feature_names, classifier, dict_classes, vec)
