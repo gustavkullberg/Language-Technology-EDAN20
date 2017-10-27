@@ -139,4 +139,4 @@ if __name__ == '__main__':
     pickle.dump(dict_classes, open("dict_classes1.pkl", "wb"))
     pickle.dump(vec, open("vec1.pkl", "wb"))
     print(model)
-    conll.save("gold_stadard", formatted_corpus, column_names_2006)
+

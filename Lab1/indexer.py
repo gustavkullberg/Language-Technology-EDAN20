@@ -20,6 +20,7 @@ def createDictionaries(files):
         count = 0
         WORDS = (words(open(arg + '/' + f).read()))
         for w in WORDS:
+            print(w.start())
             dictionaries.setdefault(w.group(), {}).setdefault(f, []).append(w.start())
             count += 1
         words_per_doc[f] = count

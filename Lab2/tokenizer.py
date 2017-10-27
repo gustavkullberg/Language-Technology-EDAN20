@@ -62,12 +62,12 @@ def tokenize5(text):
 
 
 if __name__ == '__main__':
-    text = sys.stdin.read()
+    text = open('Selma.txt').read().lower()
     """words = tokenize(text)
     for word in words:
         print(word)
     words = tokenize2(text)
     print(words)"""
-    words = tokenize5(text)
+    words = tokenize(text)
     for w in words:
-        print(w)
+       print(w)
